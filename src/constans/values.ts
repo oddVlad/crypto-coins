@@ -1,0 +1,63 @@
+export const GET_COIN_OFFSET = 0;
+export const GET_COIN_LIMIT = 20;
+export const MAX_TICKS_LIMIT = 24;
+
+export enum ROUTES {
+  HOME = "/",
+  ABOUT = "/about",
+  DETAILS = "/details",
+  DETAILS_ID = "/details/:id",
+  ERROR_PAGE = "*",
+}
+
+export enum DATE_FORMAT {
+  CHART_TOOLTIP_TITLE = "MMM D[,] YYYY [-] h:mm A",
+  CHART_LABELS_HOURS = "h A",
+  CHART_LABELS_DAYS = "MMM D",
+  CHART_LABELS_MONTH = "MMM YYYY",
+}
+
+export enum GRAPH_STATE {
+  POSITIVE = "POSITIVE",
+  NEGATIVE = "NEGATIVE",
+}
+
+export const GRAPH_COLOR_SHEMA = {
+  [GRAPH_STATE.POSITIVE]: {
+    backgroundColor: "rgba(17, 207, 139, 0.3)",
+    borderColor: "rgb(17, 207, 139)",
+  },
+  [GRAPH_STATE.NEGATIVE]: {
+    backgroundColor: "rgba(255, 99, 132, 0.3)",
+    borderColor: "rgb(255, 99, 132)",
+  },
+};
+
+export const HISTORY_INTERVALS = {
+  DAY: "1D",
+  WEEK: "1W",
+  MONTH: "1M",
+  THREE_MONTH: "3M",
+  SIX_MONTH: "6M",
+  YEAR: "Y",
+}
+
+export const DATA_INTERVALS = {
+  [HISTORY_INTERVALS.DAY]: "m5",
+  [HISTORY_INTERVALS.WEEK]: "m30",
+  [HISTORY_INTERVALS.MONTH]: "h2",
+  [HISTORY_INTERVALS.THREE_MONTH]: "h6",
+  [HISTORY_INTERVALS.SIX_MONTH]: "h12",
+  [HISTORY_INTERVALS.YEAR]: "d1",
+}
+
+export const CHART_LABELS_FORMATS = {
+  [HISTORY_INTERVALS.DAY]: DATE_FORMAT.CHART_LABELS_HOURS,
+  [HISTORY_INTERVALS.WEEK]: DATE_FORMAT.CHART_LABELS_HOURS,
+  [HISTORY_INTERVALS.MONTH]: DATE_FORMAT.CHART_LABELS_DAYS,
+  [HISTORY_INTERVALS.THREE_MONTH]: DATE_FORMAT.CHART_LABELS_DAYS,
+  [HISTORY_INTERVALS.SIX_MONTH]: DATE_FORMAT.CHART_LABELS_DAYS,
+  [HISTORY_INTERVALS.YEAR]: DATE_FORMAT.CHART_LABELS_MONTH,
+}
+
+export const COIN_API = process.env.REACT_APP_COIN_API;
