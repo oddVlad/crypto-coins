@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { memo, useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../hooks/store";
 import { fetchCoinsList } from "../../api/coins";
 import CoinsTable from "../../components/CoinsTable";
@@ -11,12 +11,10 @@ const Coins: React.FC<ICoinsProps> = () => {
     const [offset, setOffset] = useState<number>(GET_COIN_OFFSET);
     const dispatch = useAppDispatch();
 
-    const { isLoading, list } = useAppSelector((state) => state.coins);
+    const { list } = useAppSelector((state) => state.coins);
 
     useEffect(() => {
-        if (!list.length) {
-            dispatch(fetchCoinsList(offset));
-        }
+        dispatch(fetchCoinsList(GET_COIN_OFFSET));
 
         return () => {
             dispatch(resetState());
@@ -24,8 +22,6 @@ const Coins: React.FC<ICoinsProps> = () => {
     }, []);
 
     const loadMoreCoinsClickHandler = () => {
-        console.log("click");
-
         const nextOffsetValue = offset + GET_COIN_LIMIT;
         dispatch(fetchCoinsList(nextOffsetValue));
         setOffset(nextOffsetValue);
@@ -33,17 +29,15 @@ const Coins: React.FC<ICoinsProps> = () => {
 
     return (
         <div className="">
-            {isLoading ? <div>Loading</div> :
-                <div className="">
-                    <CoinsTable coins={list} />
-                    <button
-                        onClick={loadMoreCoinsClickHandler}
-                        className="mx-auto block px-6 capitalize py-4 my-5 text-center transition-colors rounded-full bg-bg-100 hover:bg-accent-200 hidden">
-                        load more
-                    </button>
+            <div className="">
+                <CoinsTable coins={list} />
+                <button
+                    onClick={loadMoreCoinsClickHandler}
+                    className="mx-auto block px-6 capitalize py-4 my-5 text-center transition-colors rounded-full bg-bg-100 hover:bg-accent-200">
+                    load more
+                </button>
 
-                </div>
-            }
+            </div>
         </div>
     );
 };

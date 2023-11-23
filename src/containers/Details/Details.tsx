@@ -4,16 +4,17 @@ import { fetchCoinDetails, fetchCoinHistory } from "../../api/coins";
 import { useAppDispatch, useAppSelector } from "../../hooks/store";
 import { numberAug, priceFormater } from "../../utils/stringParser";
 import CoinChart from "../../components/CoinChart";
-import { ICoinHistoryRequestData } from "../../models/coinHistory";
+import { ICoinHistoryRequestData } from "../../types/coinHistory";
 import { calculateDate } from "../../utils/timeFormatter";
 import {
     DATA_INTERVALS,
+    COIN_EXCHANGES_OFFSET,
     HISTORY_INTERVALS,
+    COIN_EXCHANGES_LIMIT,
 } from "../../constans/values";
-
-interface IChartSettings {
-    interval: string;
-}
+import { fetchCoinMarkets } from "../../api/markets";
+import { ICoinMarketsRequestData } from "../../types/coinMarkets";
+import MarketsTable from "../../components/MarketsTable";
 
 const Details: React.FC = () => {
     const { id: paramId } = useParams<string>();
@@ -24,12 +25,12 @@ const Details: React.FC = () => {
             symbol,
             priceUsd,
             marketCapUsd,
-            changePercent24Hr,
             volumeUsd24Hr,
             supply,
         },
         isLoading: isDetailLoading,
         error: detailError,
+        market
     } = useAppSelector((state) => state.details);
     const {
         data,
@@ -39,50 +40,72 @@ const Details: React.FC = () => {
         low,
         high,
         average,
+        changes
     } = useAppSelector((state) => state.history);
-    const [chartSettings, setChartSettings] = useState<IChartSettings>({
-        interval: HISTORY_INTERVALS.DAY,
-    });
+    const [chartInterval, setChatInterval] = useState<string>(HISTORY_INTERVALS.DAY);
+    const [exchangesOffset, setExchangesOffset] = useState<number>(COIN_EXCHANGES_OFFSET);
 
     const dispatch = useAppDispatch();
 
     useEffect(() => {
         const requestData: ICoinHistoryRequestData = {
             coinId: paramId ?? "",
-            interval: DATA_INTERVALS[chartSettings.interval],
+            interval: DATA_INTERVALS[chartInterval],
             period: {
-                start: calculateDate(chartSettings.interval),
+                start: calculateDate(chartInterval),
                 end: new Date().getTime(),
             },
         };
 
-        const fetchData = async () => {
-            await dispatch(fetchCoinHistory(requestData));
-            await dispatch(fetchCoinDetails(paramId));
-        };
-
-        fetchData();
+        dispatch(fetchCoinDetails(paramId));
+        dispatch(fetchCoinHistory(requestData));
+        dispatch(fetchCoinMarkets(paramId, exchangesOffset));
     }, []);
+
 
     useEffect(() => {
         const requestData: ICoinHistoryRequestData = {
             coinId: paramId ?? "",
-            interval: DATA_INTERVALS[chartSettings.interval],
+            interval: DATA_INTERVALS[chartInterval],
             period: {
-                start: calculateDate(chartSettings.interval),
+                start: calculateDate(chartInterval),
                 end: new Date().getTime(),
             },
         };
         dispatch(fetchCoinHistory(requestData))
-    }, [chartSettings.interval])
+    }, [chartInterval])
 
     const changeInterval = (event: any) => {
-        setChartSettings({
-            interval: event.target.value,
-        });
+        setChatInterval(event.target.value);
     };
 
-    const { interval } = chartSettings;
+    const loadExchangesClickHandler = (event: any) => {
+        const nextOffsetValue = exchangesOffset + COIN_EXCHANGES_LIMIT;
+        dispatch(fetchCoinMarkets(paramId, nextOffsetValue));
+        setExchangesOffset(nextOffsetValue);
+    };
+
+    const renderChartIntervals = () => Object.values(HISTORY_INTERVALS).map((item, index) =>
+
+        <div key={item}>
+            <input
+                id={`radio-${index}`}
+                type="radio"
+                name="interval"
+                value={item}
+                className="hidden peer"
+                checked={chartInterval === item}
+                onChange={changeInterval}
+            />
+            <label
+                htmlFor={`radio-${index}`}
+                className="px-3 py-2 transition-colors cursor-pointer peer-hover:bg-bg-100 bg-bg-200 rounded-lg peer-checked:bg-accent-200"
+            >
+                {item}
+            </label>
+
+        </div>
+    )
 
     return (
         <>
@@ -104,12 +127,10 @@ const Details: React.FC = () => {
                                     className={`${isPositive ? "text-chart-1" : "text-chart-0"}`}
                                 >
                                     {isPositive ? "▲" : "▼"}
-                                    {priceFormater(changePercent24Hr)}%
+                                    {priceFormater(changes)}%
                                 </span>
                             </div>
                         </div>
-
-                        { }
                     </div>
 
                     <div className="flex gap-3 items-stretch">
@@ -131,14 +152,12 @@ const Details: React.FC = () => {
                 </div>
             }
 
-            <div className="flex items-stretch justify-between gap-3">
-                <div className="w-[70%]">
-                    {isHistoryLoading ? <div className="text-center">"Loading . . ."</div> :
-                        <CoinChart data={data} isPositive={isPositive} interval={chartSettings.interval} />
-                    }
+            <div className="flex items-stretch justify-between gap-3 md:flex-col md:items-center md:justify-center">
+                <div className="w-[70%] md:w-full">
+                    <CoinChart data={data} isPositive={isPositive} interval={chartInterval} />
                 </div>
 
-                <div className="px-3 w-[30%] flex flex-col justify-between">
+                <div className="px-3 w-[30%] flex flex-col justify-between md:w-full md:items-start md:my-10">
                     <div className="mb-4">
                         <div className='text-lg mb-2'>
                             <span className='m-3 text-primary-200 font-semibold uppercase'>Low</span>
@@ -154,31 +173,19 @@ const Details: React.FC = () => {
                         </div>
                     </div>
                     <div className="flex items-center justify-between flex-wrap gap-3">
-                        {Object.values(HISTORY_INTERVALS).map((item, index) =>
-
-                            <div key={item}>
-                                <input
-                                    id={`radio-${index}`}
-                                    type="radio"
-                                    name="interval"
-                                    value={item}
-                                    className="hidden peer"
-                                    checked={interval === item}
-                                    onChange={changeInterval}
-                                />
-                                <label
-                                    htmlFor={`radio-${index}`}
-                                    className="px-3 py-2 transition-colors cursor-pointer peer-hover:bg-bg-100 bg-bg-200 rounded-lg peer-checked:bg-accent-200"
-                                >
-                                    {item}
-                                </label>
-
-                            </div>
-                        )}
+                        {renderChartIntervals()}
                     </div>
                 </div>
             </div>
 
+            <div className="mt-20">
+                <MarketsTable markets={market.list} />
+                <button
+                    onClick={loadExchangesClickHandler}
+                    className="mx-auto block px-6 capitalize py-4 my-5 text-center transition-colors rounded-full bg-bg-100 hover:bg-accent-200">
+                    load more
+                </button>
+            </div>
         </>
     );
 };

@@ -1,28 +1,15 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Chart } from 'react-chartjs-2';
+
 import {
     Chart as ChartJS,
-    CategoryScale,
-    LinearScale,
-    PointElement,
-    LineElement,
-    Filler,
-    Tooltip,
     ChartData,
     ChartOptions,
+    registerables,
 } from 'chart.js';
-import { ICoinHistory } from '../../models/coinHistory';
+import { ICoinHistory } from '../../types/coinHistory';
 import { CHART_LABELS_FORMATS, DATE_FORMAT, GRAPH_COLOR_SHEMA, GRAPH_STATE, HISTORY_INTERVALS, MAX_TICKS_LIMIT } from '../../constans/values';
 import moment from 'moment';
-
-ChartJS.register(
-    CategoryScale,
-    LinearScale,
-    PointElement,
-    LineElement,
-    Filler,
-    Tooltip,
-);
 
 interface ICoinChartProps {
     data: ICoinHistory[],
@@ -30,19 +17,21 @@ interface ICoinChartProps {
     isPositive: boolean,
 }
 
+ChartJS.register(...registerables);
+
 const CoinChart: React.FC<ICoinChartProps> = ({ data, isPositive, interval = HISTORY_INTERVALS.DAY }) => {
     const chartRef = useRef<ChartJS>(null);
     const labels = data.map(item => item.date);
-    const [chartData, setChartData] = useState<ChartData>({
+    const chartData: ChartData = {
         labels: labels,
         datasets: [{
             fill: true,
             pointStyle: false,
             data: data.map(item => +item.priceUsd),
         }],
-    });
+    };
 
-    const [chartOptions, setChartOptions] = useState<ChartOptions>({
+    const chartOptions: ChartOptions = {
         responsive: true,
         ...GRAPH_COLOR_SHEMA[isPositive ? GRAPH_STATE.POSITIVE : GRAPH_STATE.NEGATIVE],
         interaction: {
@@ -71,13 +60,17 @@ const CoinChart: React.FC<ICoinChartProps> = ({ data, isPositive, interval = HIS
                     title: (context: any) => moment(context[0].label).format(DATE_FORMAT.CHART_TOOLTIP_TITLE),
                 }
             },
+            legend: {
+                display: false,
+            }
         }
-    });
+    };
+
+    const chartResize = () => {
+        chartRef.current?.resize();
+    };
 
     useEffect(() => {
-        const chartResize = () => {
-            chartRef.current?.resize();
-        };
 
         window.addEventListener('resize', chartResize);
 

@@ -5,12 +5,12 @@ import {
   getCoinListSuccess,
   getCoinListFailure,
 } from "../store/reducers/coinSlice";
-import { ICoinResponseData, ICoinsListResponseData } from "../models/coins";
+import { ICoinResponseData, ICoinsListResponseData } from "../types/coins";
 import { GET_COIN_LIMIT, COIN_API } from "../constans/values";
 import {
   ICoinHistoryRequestData,
   ICoinHistoryResponseData,
-} from "../models/coinHistory";
+} from "../types/coinHistory";
 import {
   getCoinHistoryFailure,
   getCoinHistoryPending,

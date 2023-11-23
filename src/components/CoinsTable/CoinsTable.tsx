@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { ICoin } from '../../models/coins'
+import { ICoin } from '../../types/coins'
 import CoinTableRow from './CoinTableRow';
 
 interface CoinsTableProps {
@@ -18,7 +18,7 @@ const CoinsTable: React.FC<CoinsTableProps> = ({ coins }) => {
         }
     }
 
-    const renderTagleRow = (coinsList: ICoin[]) => {
+    const renderTableRow = (coinsList: ICoin[]) => {
         return coinsList.map(coin => <CoinTableRow
             key={coin.id}
             coin={coin}
@@ -43,7 +43,7 @@ const CoinsTable: React.FC<CoinsTableProps> = ({ coins }) => {
                 </tr>
             </thead>
             <tbody>
-                {renderTagleRow(coins)}
+                {renderTableRow(coins)}
             </tbody>
         </table>
     )

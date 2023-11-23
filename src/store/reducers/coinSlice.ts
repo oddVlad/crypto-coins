@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
-import { ICoin } from "../../models/coins";
+import { ICoin } from "../../types/coins";
 
 interface ICoinState {
   list: ICoin[] | [];
@@ -21,13 +21,13 @@ const coinSlice = createSlice({
     getCoinListPending(state) {
       state.isLoading = true;
     },
-    getCoinListSuccess(state, action: PayloadAction<ICoin[]>) {
+    getCoinListSuccess(state, { payload }: PayloadAction<ICoin[]>) {
       state.isLoading = false;
-      state.list = action.payload;
+      state.list = [...state.list, ...payload];
     },
-    getCoinListFailure(state, action: PayloadAction<string>) {
+    getCoinListFailure(state, { payload }: PayloadAction<string>) {
       state.isLoading = false;
-      state.error = action.payload;
+      state.error = payload;
     },
 
     resetState(state) {

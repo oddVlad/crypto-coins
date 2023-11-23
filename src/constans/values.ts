@@ -1,5 +1,10 @@
+export const COIN_API = process.env.REACT_APP_COIN_API;
 export const GET_COIN_OFFSET = 0;
 export const GET_COIN_LIMIT = 20;
+
+export const COIN_EXCHANGES_OFFSET = 0;
+export const COIN_EXCHANGES_LIMIT = 20;
+
 export const MAX_TICKS_LIMIT = 24;
 
 export enum ROUTES {
@@ -18,8 +23,8 @@ export enum DATE_FORMAT {
 }
 
 export enum GRAPH_STATE {
-  POSITIVE = "POSITIVE",
-  NEGATIVE = "NEGATIVE",
+  POSITIVE,
+  NEGATIVE,
 }
 
 export const GRAPH_COLOR_SHEMA = {
@@ -60,4 +65,3 @@ export const CHART_LABELS_FORMATS = {
   [HISTORY_INTERVALS.YEAR]: DATE_FORMAT.CHART_LABELS_MONTH,
 }
 
-export const COIN_API = process.env.REACT_APP_COIN_API;

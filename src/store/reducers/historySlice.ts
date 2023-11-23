@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
-import { ICoinHistory } from "../../models/coinHistory";
+import { ICoinHistory } from "../../types/coinHistory";
+import { getCostDifference } from "../../utils/stringParser";
 
 interface IHistoryState {
     isLoading: boolean;
@@ -10,6 +11,7 @@ interface IHistoryState {
     high: number;
     average: number;
     isPositive: boolean;
+    changes: number;
 }
 
 
@@ -21,6 +23,7 @@ const initialState: IHistoryState = {
     high: 0,
     average: 0,
     isPositive: false,
+    changes: 0,
 };
 
 const historySlice = createSlice({
@@ -31,16 +34,20 @@ const historySlice = createSlice({
             state.isLoading = true;
         },
         getCoinHistorySuccess(state, { payload }: PayloadAction<ICoinHistory[]>) {
-            const lowesPrice = Math.max(...payload.map((coin) => +coin.priceUsd));
-            const biggestPrice = Math.min(...payload.map((coin) => +coin.priceUsd));
+            const payloadCoins = payload.map((coin) => +coin.priceUsd);
+            const lowesPrice = Math.min(...payloadCoins);
+            const biggestPrice = Math.max(...payloadCoins);
+            const startCoinPrice = +payload[0].priceUsd;
+            const endCoinPrice = +payload[payload.length - 1].priceUsd
+            const priceDifference = getCostDifference(startCoinPrice, endCoinPrice);
 
             state.isLoading = false;
             state.data = payload;
             state.low = lowesPrice;
             state.high = biggestPrice;
             state.average = (lowesPrice + biggestPrice) / 2;
-            state.isPositive =
-                +payload[0].priceUsd < +payload[payload.length - 1].priceUsd;
+            state.isPositive = priceDifference >= 0;
+            state.changes = priceDifference;
         },
         getCoinHistoryFailure(state, action: PayloadAction<string>) {
             state.isLoading = false;

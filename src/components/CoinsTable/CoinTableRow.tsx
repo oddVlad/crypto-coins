@@ -1,9 +1,9 @@
 import React from 'react'
-import { ICoin } from '../../models/coins'
+import { ICoin } from '../../types/coins'
 import { numberAug, priceFormater } from '../../utils/stringParser';
 import CoinDetailRow from '../CoinDetailRow';
 import { fetchCoinHistory } from '../../api/coins';
-import { ICoinHistoryRequestData } from '../../models/coinHistory';
+import { ICoinHistoryRequestData } from '../../types/coinHistory';
 import { useAppDispatch } from '../../hooks/store';
 import { getDateDayAgo } from '../../utils/timeFormatter';
 
@@ -43,7 +43,7 @@ const CoinTableRow: React.FC<ICoinTableRowProps> = ({ coin, selectedId, handleSe
     return (
         <>
             <tr
-                className='cursor-pointer dark:bg-bg-200 hover:dark:bg-bg-100 border-block-end align-'
+                className='cursor-pointer dark:bg-bg-200 hover:dark:bg-bg-100 border-block-end'
                 onClick={handleCoinClick}
             >
                 <td className='text-start p-4 md:p-2 sm:hidden '>{rank}</td>

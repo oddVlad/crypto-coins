@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { IoIosSettings } from 'react-icons/io';
+import CryptoIcon from "../../assets/crypto.png";
 import Navbar from "../Navbar";
 
 interface HeaderProps { }
@@ -9,7 +10,7 @@ const Header: React.FC<HeaderProps> = () => {
     return (
         <div className="bg-bg-200 rounded-lg flex items-center justify-between px-3">
             <Link to="/" className="flex items-center gap-3 flex-1">
-                <img src="/crypto.png" alt="Crypto world" className="w-[40px]" />
+                <img src={CryptoIcon} alt="Crypto world" className="w-[40px]" />
                 <h1 className="text-xl font-bold">Crypto Coins</h1>
             </Link>
 

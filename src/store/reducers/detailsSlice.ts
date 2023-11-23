@@ -1,11 +1,17 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
-import { ICoin } from "../../models/coins";
+import { ICoin } from "../../types/coins";
+import { ICoinMarkets } from "../../types/coinMarkets";
 
 interface IDetailsState {
   isLoading: boolean;
   error: string;
   data: ICoin;
+  market: {
+    list: ICoinMarkets[],
+    isLoading: boolean,
+    errorMessage: string,
+  }
 }
 
 const initialState: IDetailsState = {
@@ -25,6 +31,11 @@ const initialState: IDetailsState = {
     vwap24Hr: "",
     explorer: "",
   },
+  market: {
+    list: [],
+    isLoading: false,
+    errorMessage: "",
+  }
 };
 
 const detailsSlice = createSlice({
@@ -40,9 +51,23 @@ const detailsSlice = createSlice({
       state.data = payload;
     },
 
-    getCoinDetailsFailure(state, action: PayloadAction<string>) {
+    getCoinDetailsFailure(state, { payload }: PayloadAction<string>) {
       state.isLoading = false;
-      state.error = action.payload;
+      state.error = payload;
+    },
+
+    getCoinMarketsPending(state) {
+      state.market.isLoading = true;
+    },
+
+    getCoinMarketsSuccess(state, { payload }: PayloadAction<ICoinMarkets[]>) {
+      state.market.isLoading = false;
+      state.market.list = [...state.market.list, ...payload];
+    },
+
+    getCoinExchangesFailure(state, { payload }: PayloadAction<string>) {
+      state.market.isLoading = false;
+      state.market.errorMessage = payload;
     },
 
     resetDetailsState(state) {
@@ -55,6 +80,9 @@ export const {
   getCoinDetailsPending,
   getCoinDetailsSuccess,
   getCoinDetailsFailure,
+  getCoinMarketsPending,
+  getCoinMarketsSuccess,
+  getCoinExchangesFailure,
   resetDetailsState,
 } = detailsSlice.actions;
 export default detailsSlice.reducer;
