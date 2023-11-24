@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { BsBoxArrowUpRight } from "react-icons/bs";
 import { fetchCoinDetails, fetchCoinHistory } from "../../api/coins";
 import { useAppDispatch, useAppSelector } from "../../hooks/store";
 import { numberAug, priceFormater } from "../../utils/stringParser";
@@ -27,6 +28,7 @@ const Details: React.FC = () => {
             marketCapUsd,
             volumeUsd24Hr,
             supply,
+            explorer,
         },
         isLoading: isDetailLoading,
         error: detailError,
@@ -118,9 +120,15 @@ const Details: React.FC = () => {
                         </div>
 
                         <div className="flex flex-col justify-evenly">
-                            <h2 className="text-2xl">
-                                {name} ({symbol})
-                            </h2>
+                            <div className="flex items-center">
+                                <h2 className="text-2xl mr-4">
+                                    {name} ({symbol})
+                                </h2>
+                                {explorer && <a href={explorer} rel="nofollow" target="blank" title={`${name} website`}>
+                                    <BsBoxArrowUpRight size={20} className=" transition-transform hover:scale-110" />
+                                </a>}
+
+                            </div>
                             <div className="flex items-center gap-3">
                                 <span className="text-xl">${numberAug(priceUsd)}</span>
                                 <span
