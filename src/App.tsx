@@ -6,13 +6,14 @@ import About from './containers/About';
 import NotFoundPage from './containers/NotFoundPage';
 import Details from './containers/Details';
 import { ROUTES } from './constans/values';
+import Exchanges from './containers/Exchanges';
+import ExchangeDetails from './containers/ExchangeDetails';
 
 interface IAppProps {
 
 }
 
 const App: React.FC<IAppProps> = () => {
-
   const router = createBrowserRouter([{
     path: ROUTES.HOME,
     element: <AppContainer />,
@@ -28,6 +29,13 @@ const App: React.FC<IAppProps> = () => {
       {
         path: ROUTES.ABOUT,
         element: <About />
+      },
+      {
+        path: ROUTES.EXCHANGES,
+        element: <Exchanges />,
+      }, {
+        path: ROUTES.EXCHANGES_ID,
+        element: <ExchangeDetails />,
       },
       {
         path: ROUTES.ERROR_PAGE,

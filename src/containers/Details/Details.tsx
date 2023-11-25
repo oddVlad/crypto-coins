@@ -9,12 +9,11 @@ import { ICoinHistoryRequestData } from "../../types/coinHistory";
 import { calculateDate } from "../../utils/timeFormatter";
 import {
     DATA_INTERVALS,
-    COIN_EXCHANGES_OFFSET,
     HISTORY_INTERVALS,
-    COIN_EXCHANGES_LIMIT,
+    COIN_MARKETS_OFFSET,
+    COIN_MARKETS_LIMIT,
 } from "../../constans/values";
 import { fetchCoinMarkets } from "../../api/markets";
-import { ICoinMarketsRequestData } from "../../types/coinMarkets";
 import MarketsTable from "../../components/MarketsTable";
 
 const Details: React.FC = () => {
@@ -45,7 +44,7 @@ const Details: React.FC = () => {
         changes
     } = useAppSelector((state) => state.history);
     const [chartInterval, setChatInterval] = useState<string>(HISTORY_INTERVALS.DAY);
-    const [exchangesOffset, setExchangesOffset] = useState<number>(COIN_EXCHANGES_OFFSET);
+    const [exchangesOffset, setExchangesOffset] = useState<number>(COIN_MARKETS_OFFSET);
 
     const dispatch = useAppDispatch();
 
@@ -82,7 +81,7 @@ const Details: React.FC = () => {
     };
 
     const loadExchangesClickHandler = (event: any) => {
-        const nextOffsetValue = exchangesOffset + COIN_EXCHANGES_LIMIT;
+        const nextOffsetValue = exchangesOffset + COIN_MARKETS_LIMIT;
         dispatch(fetchCoinMarkets(paramId, nextOffsetValue));
         setExchangesOffset(nextOffsetValue);
     };

@@ -29,15 +29,13 @@ const Coins: React.FC<ICoinsProps> = () => {
 
     return (
         <div className="">
-            <div className="">
-                <CoinsTable coins={list} />
-                <button
-                    onClick={loadMoreCoinsClickHandler}
-                    className="mx-auto block px-6 capitalize py-4 my-5 text-center transition-colors rounded-full bg-bg-100 hover:bg-accent-200">
-                    load more
-                </button>
+            <CoinsTable coins={list} />
+            <button
+                onClick={loadMoreCoinsClickHandler}
+                className="mx-auto block px-6 capitalize py-4 my-5 text-center transition-colors rounded-full bg-bg-100 hover:bg-accent-200">
+                load more
+            </button>
 
-            </div>
         </div>
     );
 };

@@ -10,12 +10,12 @@ export interface ICoinMarkets {
 }
 
 export interface ICoinMarketsRequestData {
-    coinId: string;
-    limit?: number;
-    offset: number;
+    coinId: string,
+    limit?: number,
+    offset: number,
 }
 
 export interface ICoinMarketsResponseData {
-    data: ICoinMarkets[];
-    timestamp: number;
+    data: ICoinMarkets[],
+    timestamp: number,
 }

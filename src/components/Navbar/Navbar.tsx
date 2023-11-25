@@ -10,6 +10,9 @@ const Navbar: React.FC<INavbarProps> = () => {
             <NavbarLink pathTo={ROUTES.HOME}>
                 Home
             </NavbarLink>
+            <NavbarLink pathTo={ROUTES.EXCHANGES}>
+                Exchange
+            </NavbarLink>
             <NavbarLink pathTo={ROUTES.ABOUT}>
                 About
             </NavbarLink>

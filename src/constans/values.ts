@@ -2,6 +2,9 @@ export const COIN_API = process.env.REACT_APP_COIN_API;
 export const GET_COIN_OFFSET = 0;
 export const GET_COIN_LIMIT = 20;
 
+export const COIN_MARKETS_OFFSET = 0;
+export const COIN_MARKETS_LIMIT = 20;
+
 export const COIN_EXCHANGES_OFFSET = 0;
 export const COIN_EXCHANGES_LIMIT = 20;
 
@@ -12,6 +15,8 @@ export enum ROUTES {
   ABOUT = "/about",
   DETAILS = "/details",
   DETAILS_ID = "/details/:id",
+  EXCHANGES = "/exchanges",
+  EXCHANGES_ID = "/exchanges/:id",
   ERROR_PAGE = "*",
 }
 
