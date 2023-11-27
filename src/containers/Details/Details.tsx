@@ -15,6 +15,7 @@ import {
 } from "../../constans/values";
 import { fetchCoinMarkets } from "../../api/markets";
 import MarketsTable from "../../components/MarketsTable";
+import { resetDetailsState } from "../../store/reducers/detailsSlice";
 
 const Details: React.FC = () => {
     const { id: paramId } = useParams<string>();
@@ -31,7 +32,6 @@ const Details: React.FC = () => {
         },
         isLoading: isDetailLoading,
         error: detailError,
-        market
     } = useAppSelector((state) => state.details);
     const {
         data,
@@ -43,6 +43,7 @@ const Details: React.FC = () => {
         average,
         changes
     } = useAppSelector((state) => state.history);
+    const { list: marketList } = useAppSelector(state => state.markets)
     const [chartInterval, setChatInterval] = useState<string>(HISTORY_INTERVALS.DAY);
     const [exchangesOffset, setExchangesOffset] = useState<number>(COIN_MARKETS_OFFSET);
 
@@ -61,6 +62,10 @@ const Details: React.FC = () => {
         dispatch(fetchCoinDetails(paramId));
         dispatch(fetchCoinHistory(requestData));
         dispatch(fetchCoinMarkets(paramId, exchangesOffset));
+
+        return () => {
+            dispatch(resetDetailsState())
+        }
     }, []);
 
 
@@ -186,7 +191,7 @@ const Details: React.FC = () => {
             </div>
 
             <div className="mt-20">
-                <MarketsTable markets={market.list} />
+                <MarketsTable markets={marketList} />
                 <button
                     onClick={loadExchangesClickHandler}
                     className="mx-auto block px-6 capitalize py-4 my-5 text-center transition-colors rounded-full bg-bg-100 hover:bg-accent-200">

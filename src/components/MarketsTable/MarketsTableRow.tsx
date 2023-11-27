@@ -3,10 +3,11 @@ import { ICoinMarkets } from '../../types/coinMarkets'
 import { numberAug } from '../../utils/stringParser';
 
 interface IMarketsTableRowProps {
-    market: ICoinMarkets
+    market: ICoinMarkets,
+    clickHandler: (id: string) => void,
 }
 
-const MarketsTableRow: React.FC<IMarketsTableRowProps> = ({ market }) => {
+const MarketsTableRow: React.FC<IMarketsTableRowProps> = ({ market, clickHandler }) => {
 
     const {
         exchangeId,
@@ -17,10 +18,14 @@ const MarketsTableRow: React.FC<IMarketsTableRowProps> = ({ market }) => {
         volumePercent,
     } = market;
 
+    const marketRowHandleClick = () => {
+        clickHandler(exchangeId);
+    }
+
     return (
         <tr
             className='cursor-pointer dark:bg-bg-200 hover:dark:bg-bg-100 border-block-end'
-            onClick={() => console.log()}
+            onClick={marketRowHandleClick}
         >
             <td className='text-start p-4 md:p-2'>{exchangeId}</td>
             <td className='flex text-start p-4 md:p-2 items-center '>

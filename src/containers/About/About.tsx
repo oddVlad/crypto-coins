@@ -9,7 +9,7 @@ const About: React.FC<IAboutProps> = () => {
     return (
         <div className='m-auto text-lg'>
             <img src={appIcon} alt="App Icon" className='m-auto' />
-            <h2 className='text-center my-3 font-bold text-2xl'>Crypto Coins</h2>
+            <h2 className='text-center font-extrabold leading-loose text-transparent text-5xl bg-clip-text bg-gradient-to-r from-[#94F6FF] to-[#037DDB]'>Crypto Coins</h2>
 
             <div className='mt-40'>
                 <p className='indent-10'>Crypto Coins is a digital platform that provides information about crypto coins. I attempted to display the relevant crypto coins and their descriptions here. Well, I would also like to share with you the tech stack of the app and a short description of almost every UI component that I used on that stack.</p>

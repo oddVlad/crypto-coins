@@ -1,15 +1,22 @@
 import React from 'react'
 import MarketsTableRow from './MarketsTableRow'
 import { ICoinMarkets } from '../../types/coinMarkets'
+import { useNavigate } from 'react-router-dom'
+import { ROUTES } from '../../constans/values'
 
 interface IExchangesTableProps {
     markets: ICoinMarkets[],
 }
 
 const MarketsTable: React.FC<IExchangesTableProps> = ({ markets }) => {
+    const navigate = useNavigate();
+
+    const marketRowClickHandler = (id: string) => {
+        navigate(`${ROUTES.EXCHANGES_ID}/${id}`,)
+    }
 
     const renderMarketsTableRow = (list: ICoinMarkets[]) =>
-        list.map((item, index) => <MarketsTableRow key={index} market={item} />)
+        list.map((item, index) => <MarketsTableRow key={index} market={item} clickHandler={marketRowClickHandler} />)
 
     return (
         <table className="table-auto w-full mx-auto relative border-collapse">

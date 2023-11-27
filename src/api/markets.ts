@@ -4,7 +4,7 @@ import {
     getCoinExchangesFailure,
     getCoinMarketsPending,
     getCoinMarketsSuccess
-} from "../store/reducers/detailsSlice";
+} from "../store/reducers/marketsSlice";
 import { COIN_API, COIN_EXCHANGES_LIMIT } from "../constans/values";
 import { ICoinMarketsResponseData } from "../types/coinMarkets";
 

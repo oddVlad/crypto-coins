@@ -4,6 +4,7 @@ import coinSlice from "./reducers/coinSlice";
 import historySlice from "./reducers/historySlice";
 import detailsSlice from "./reducers/detailsSlice";
 import exchangesSlice from "./reducers/exchangesSlice";
+import marketsSlice from "./reducers/marketsSlice";
 
 const RootReducer = combineReducers({
   app: appSlice,
@@ -11,6 +12,7 @@ const RootReducer = combineReducers({
   history: historySlice,
   details: detailsSlice,
   exchanges: exchangesSlice,
+  markets: marketsSlice,
 });
 
 export const store = configureStore({

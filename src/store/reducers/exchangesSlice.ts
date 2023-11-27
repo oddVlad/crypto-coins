@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit"
 import { IExchange } from "../../types/exchanges";
 import type { PayloadAction } from "@reduxjs/toolkit";
+import { COIN_EXCHANGES_LIMIT } from "../../constans/values";
 
 
 interface IExchangeDetails {
@@ -12,6 +13,7 @@ interface IExchangeDetails {
 interface IExchangesState {
     isLoading: boolean;
     list: IExchange[],
+    isEndList: boolean,
     error: string,
     details: IExchangeDetails,
 }
@@ -19,6 +21,7 @@ interface IExchangesState {
 const initialState: IExchangesState = {
     isLoading: false,
     list: [],
+    isEndList: false,
     error: "",
     details: {
         data: null,
@@ -36,7 +39,8 @@ const exchangesSlice = createSlice({
         },
         getExchangesSuccess(state, { payload }: PayloadAction<IExchange[]>) {
             state.isLoading = false;
-            state.list = [...state.list, ...payload];
+            state.isEndList = payload.length < COIN_EXCHANGES_LIMIT;
+            state.list = [...state.list, ...payload].sort((current: IExchange, next: IExchange) => +current.rank - +next.rank);
         },
         getExchangesFailure(state, { payload }: PayloadAction<string>) {
             state.isLoading = false;
@@ -53,6 +57,9 @@ const exchangesSlice = createSlice({
             state.details.isLoading = false;
             state.details.error = payload;
         },
+        resetExchangesState(state) {
+            state = initialState;
+        }
 
     }
 })
@@ -64,6 +71,7 @@ export const {
     getExchangeDetailsPending,
     getExchangeDetailsSuccess,
     getExchangeDetailsFailure,
+    resetExchangesState
 } = exchangesSlice.actions;
 export default exchangesSlice.reducer;
 

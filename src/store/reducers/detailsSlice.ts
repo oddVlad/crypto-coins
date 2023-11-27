@@ -7,11 +7,6 @@ interface IDetailsState {
   isLoading: boolean;
   error: string;
   data: ICoin;
-  market: {
-    list: ICoinMarkets[],
-    isLoading: boolean,
-    errorMessage: string,
-  }
 }
 
 const initialState: IDetailsState = {
@@ -31,11 +26,6 @@ const initialState: IDetailsState = {
     vwap24Hr: "",
     explorer: "",
   },
-  market: {
-    list: [],
-    isLoading: false,
-    errorMessage: "",
-  }
 };
 
 const detailsSlice = createSlice({
@@ -56,20 +46,6 @@ const detailsSlice = createSlice({
       state.error = payload;
     },
 
-    getCoinMarketsPending(state) {
-      state.market.isLoading = true;
-    },
-
-    getCoinMarketsSuccess(state, { payload }: PayloadAction<ICoinMarkets[]>) {
-      state.market.isLoading = false;
-      state.market.list = [...state.market.list, ...payload];
-    },
-
-    getCoinExchangesFailure(state, { payload }: PayloadAction<string>) {
-      state.market.isLoading = false;
-      state.market.errorMessage = payload;
-    },
-
     resetDetailsState(state) {
       state = initialState;
     },
@@ -80,9 +56,6 @@ export const {
   getCoinDetailsPending,
   getCoinDetailsSuccess,
   getCoinDetailsFailure,
-  getCoinMarketsPending,
-  getCoinMarketsSuccess,
-  getCoinExchangesFailure,
   resetDetailsState,
 } = detailsSlice.actions;
 export default detailsSlice.reducer;
