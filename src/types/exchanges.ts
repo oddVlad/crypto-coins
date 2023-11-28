@@ -1,5 +1,5 @@
 export interface IExchange {
-    id: string,
+    exchangeId: string,
     name: string,
     rank: string,
     percentTotalVolume: string,

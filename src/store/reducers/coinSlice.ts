@@ -30,9 +30,7 @@ const coinSlice = createSlice({
       state.error = payload;
     },
 
-    resetState(state) {
-      state = initialState;
-    },
+    resetCoinsState: () => initialState,
   },
 });
 
@@ -40,6 +38,6 @@ export const {
   getCoinListPending,
   getCoinListSuccess,
   getCoinListFailure,
-  resetState,
+  resetCoinsState,
 } = coinSlice.actions;
 export default coinSlice.reducer;

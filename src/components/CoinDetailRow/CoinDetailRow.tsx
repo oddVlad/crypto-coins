@@ -43,8 +43,7 @@ const CoinDetailRow: React.FC<ICoinDetailRowProps> = ({ coin: { id, name, symbol
 
                             />
                             <div className=''>
-                                <span className='text-2xl mb-4'>{name}</span>
-                                <span className='text-2xl'>({name})</span>
+                                <p className='text-2xl mb-1'>{name} ({symbol})</p>
 
                                 <span className='block'>{getFormatedCurrentDate()}</span>
                             </div>

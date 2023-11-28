@@ -1,8 +1,8 @@
-import React, { memo, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../hooks/store";
 import { fetchCoinsList } from "../../api/coins";
 import CoinsTable from "../../components/CoinsTable";
-import { resetState } from "../../store/reducers/coinSlice";
+import { resetCoinsState } from "../../store/reducers/coinSlice";
 import { GET_COIN_LIMIT, GET_COIN_OFFSET } from "../../constans/values";
 
 interface ICoinsProps { }
@@ -17,7 +17,7 @@ const Coins: React.FC<ICoinsProps> = () => {
         dispatch(fetchCoinsList(GET_COIN_OFFSET));
 
         return () => {
-            dispatch(resetState());
+            dispatch(resetCoinsState());
         };
     }, []);
 

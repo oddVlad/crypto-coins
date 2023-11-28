@@ -54,9 +54,8 @@ const historySlice = createSlice({
             state.error = action.payload;
         },
 
-        resetHistoryState(state) {
-            state = initialState;
-        },
+        resetHistoryState: () => initialState,
+
     },
 });
 

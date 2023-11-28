@@ -1,6 +1,6 @@
-import React from 'react'
-import { IExchange } from '../../types/exchanges'
-import ExchangesTableRow from './ExchangesTableRow'
+import React from 'react';
+import { IExchange } from '../../types/exchanges';
+import ExchangesTableRow from './ExchangesTableRow';
 
 interface IExchangesTable {
     exchanges: IExchange[],
@@ -8,7 +8,7 @@ interface IExchangesTable {
 
 const ExchangesTable: React.FC<IExchangesTable> = ({ exchanges }) => {
     const renderExchangeRows = (list: IExchange[]) => list.map(item =>
-        <ExchangesTableRow key={item.id} exchange={item} />
+        <ExchangesTableRow key={item.exchangeId} exchange={item} />
     )
 
     return (

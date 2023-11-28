@@ -16,6 +16,8 @@ import {
 import { fetchCoinMarkets } from "../../api/markets";
 import MarketsTable from "../../components/MarketsTable";
 import { resetDetailsState } from "../../store/reducers/detailsSlice";
+import { resetHistoryState } from "../../store/reducers/historySlice";
+import { resetMarketsState } from "../../store/reducers/marketsSlice";
 
 const Details: React.FC = () => {
     const { id: paramId } = useParams<string>();
@@ -31,12 +33,9 @@ const Details: React.FC = () => {
             explorer,
         },
         isLoading: isDetailLoading,
-        error: detailError,
     } = useAppSelector((state) => state.details);
     const {
         data,
-        isLoading: isHistoryLoading,
-        error: historyError,
         isPositive,
         low,
         high,
@@ -64,7 +63,9 @@ const Details: React.FC = () => {
         dispatch(fetchCoinMarkets(paramId, exchangesOffset));
 
         return () => {
-            dispatch(resetDetailsState())
+            dispatch(resetDetailsState());
+            dispatch(resetHistoryState());
+            dispatch(resetMarketsState());
         }
     }, []);
 

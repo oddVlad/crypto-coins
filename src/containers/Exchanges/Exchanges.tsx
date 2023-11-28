@@ -1,16 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import ExchangesTable from '../../components/ExchangesTable/ExchangesTable'
 import { COIN_EXCHANGES_LIMIT, COIN_EXCHANGES_OFFSET } from '../../constans/values';
-import { IExchangesRequest } from '../../types/exchanges';
-import { useParams } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../hooks/store';
 import { fetchExchagnes } from '../../api/exchanges';
 import { resetExchangesState } from '../../store/reducers/exchangesSlice';
 
 const Exchanges: React.FC = () => {
     const [offset, setOffset] = useState<number>(COIN_EXCHANGES_OFFSET);
-    const { id: exchangeId } = useParams<string>();
-    const { isLoading, list, error, details, isEndList } = useAppSelector(state => state.exchanges)
+    const { list, isEndList } = useAppSelector(state => state.exchanges)
     const dispatch = useAppDispatch();
 
     useEffect(() => {

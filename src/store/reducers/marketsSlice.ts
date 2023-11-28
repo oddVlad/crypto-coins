@@ -32,9 +32,7 @@ const marketsSlice = createSlice({
             state.errorMessage = payload;
         },
 
-        resetMarketsState(state) {
-            state = initialState;
-        }
+        resetMarketsState: () => initialState
     }
 })
 
@@ -42,6 +40,7 @@ export const {
     getCoinMarketsPending,
     getCoinMarketsSuccess,
     getCoinExchangesFailure,
+    resetMarketsState
 } = marketsSlice.actions
 
 export default marketsSlice.reducer;

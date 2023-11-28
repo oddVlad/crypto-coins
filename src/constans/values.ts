@@ -16,7 +16,6 @@ export enum ROUTES {
   DETAILS = "/details",
   DETAILS_ID = "/details/:id",
   EXCHANGES = "/exchanges",
-  EXCHANGES_ID = "/exchanges/:id",
   ERROR_PAGE = "*",
 }
 

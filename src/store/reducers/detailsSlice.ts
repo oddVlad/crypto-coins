@@ -1,7 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import { ICoin } from "../../types/coins";
-import { ICoinMarkets } from "../../types/coinMarkets";
 
 interface IDetailsState {
   isLoading: boolean;
@@ -46,9 +45,8 @@ const detailsSlice = createSlice({
       state.error = payload;
     },
 
-    resetDetailsState(state) {
-      state = initialState;
-    },
+    resetDetailsState: () => initialState,
+
   },
 });
 

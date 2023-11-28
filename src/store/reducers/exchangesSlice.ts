@@ -57,10 +57,8 @@ const exchangesSlice = createSlice({
             state.details.isLoading = false;
             state.details.error = payload;
         },
-        resetExchangesState(state) {
-            state = initialState;
-        }
 
+        resetExchangesState: () => initialState,
     }
 })
 
