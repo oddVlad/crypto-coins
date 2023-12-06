@@ -14,7 +14,7 @@ module.exports = {
       center: true,
     },
     fontFamily: {
-      sans: ["Rubik", "sans-serif"],
+      sans: ["Inter", "sans-serif"],
     },
     extend: {
       colors: {
@@ -47,6 +47,27 @@ module.exports = {
       },
       borderRadius: {
         x: "2rem",
+      },
+      animation: {
+        "spin-slow": "spin-slow 30s linear infinite",
+        "spin-slow-reverse": "spin-reverse 30s linear infinite",
+      },
+      transformOrigin: {
+        "rec-lg": "50% 250px",
+        "rec-md": "50% 200px",
+        "rec-sm": "50% 150px",
+      },
+      keyframes: {
+        "spin-slow": {
+          to: {
+            transform: "rotate(1turn)",
+          },
+        },
+        "spin-reverse": {
+          from: {
+            transform: "rotate(1turn)",
+          },
+        },
       },
     },
   },

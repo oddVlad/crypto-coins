@@ -10,6 +10,8 @@ export const COIN_EXCHANGES_LIMIT = 20;
 
 export const MAX_TICKS_LIMIT = 24;
 
+export const ANIMATE_DURATION = 300;
+
 export enum ROUTES {
   HOME = "/",
   ABOUT = "/about",

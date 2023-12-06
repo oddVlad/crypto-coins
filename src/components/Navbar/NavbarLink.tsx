@@ -4,7 +4,7 @@ import { ROUTES } from '../../constans/values'
 
 interface INavbarLinkProps {
     pathTo: ROUTES,
-    children: string
+    children: string | JSX.Element
 }
 
 const NavbarLink: React.FC<INavbarLinkProps> = ({ pathTo, children }) => {
@@ -15,8 +15,8 @@ const NavbarLink: React.FC<INavbarLinkProps> = ({ pathTo, children }) => {
                 isPending
                     ? ""
                     : isActive
-                        ? "text-primary-300 hover:bg-bg-100 p-4"
-                        : "transition hover:bg-bg-100 p-4"
+                        ? "text-primary-300 hover:bg-bg-100 p-4 block rounded-lg"
+                        : "transition hover:bg-bg-100 p-4 block rounded-lg"
             }
         >
             {children}

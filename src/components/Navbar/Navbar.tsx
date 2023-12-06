@@ -6,7 +6,7 @@ interface INavbarProps { }
 
 const Navbar: React.FC<INavbarProps> = () => {
     return (
-        <nav className=" flex items-center justify-center text-lg flex-1 text-center">
+        <nav className="flex items-end justify-center text-lg text-center md:hidden">
             <NavbarLink pathTo={ROUTES.HOME}>
                 Home
             </NavbarLink>
