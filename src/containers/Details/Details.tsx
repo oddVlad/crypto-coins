@@ -106,7 +106,7 @@ const Details: React.FC = () => {
             />
             <label
                 htmlFor={`radio-${index}`}
-                className="px-3 py-2 transition-colors cursor-pointer peer-hover:bg-bg-100 bg-bg-200 rounded-lg peer-checked:bg-accent-200"
+                className="block w-12 py-2 text-center transition-colors cursor-pointer  peer-hover:bg-bg-100 rounded-lg peer-checked:bg-accent-200 md:text-base sm:text-sm sm:w-10"
             >
                 {item}
             </label>
@@ -117,16 +117,16 @@ const Details: React.FC = () => {
     return (
         <>
             {isDetailLoading ? <div className="text-center">"Loading . . ."</div> :
-                <div className="flex justify-between items-center mb-8">
-                    <div className="flex gap-3 items-stretch">
-                        <div className="text-center bg-bg-200 p-3 rounded-lg">
-                            <p className="text-3xl mb-2">{rank}</p>
+                <div className="flex justify-between flex-wrap gap-3 items-center mb-8">
+                    <div className="flex gap-3 items-stretch sm:w-full">
+                        <div className="text-center bg-bg-200 p-3 rounded-lg md:p-2">
+                            <p className="text-3xl mb-2 md:text-2xl">{rank}</p>
                             <div className="uppercase font-light text-xs">rank</div>
                         </div>
 
                         <div className="flex flex-col justify-evenly">
                             <div className="flex items-center">
-                                <h2 className="text-2xl mr-4">
+                                <h2 className="text-2xl mr-4 md:text-xl">
                                     {name} ({symbol})
                                 </h2>
                                 {explorer && <a href={explorer} rel="nofollow" target="blank" title={`${name} website`}>
@@ -135,7 +135,7 @@ const Details: React.FC = () => {
 
                             </div>
                             <div className="flex items-center gap-3">
-                                <span className="text-xl">${numberAug(priceUsd)}</span>
+                                <span className="text-xl md:text-lg">${numberAug(priceUsd)}</span>
                                 <span
                                     className={`${isPositive ? "text-chart-1" : "text-chart-0"}`}
                                 >
@@ -146,18 +146,18 @@ const Details: React.FC = () => {
                         </div>
                     </div>
 
-                    <div className="flex gap-3 items-stretch">
-                        <div className="bg-bg-200 p-3 rounded-lg">
+                    <div className="flex gap-3 items-stretch sm:justify-between sm:w-full">
+                        <div className="bg-bg-200 p-3 rounded-lg md:p-2">
                             <div className="text-xs font-light mb-2">Market Cap</div>
-                            <div className="text-xl">${priceFormater(marketCapUsd)}</div>
+                            <div className="text-xl md:text-base sm:text-sm">${priceFormater(marketCapUsd)}</div>
                         </div>
-                        <div className="bg-bg-200 p-3 rounded-lg">
+                        <div className="bg-bg-200 p-3 rounded-lg md:p-2">
                             <div className="text-xs font-light mb-2">Volume (24Hr)</div>
-                            <div className="text-xl">${priceFormater(volumeUsd24Hr)}</div>
+                            <div className="text-xl md:text-base sm:text-sm">${priceFormater(volumeUsd24Hr)}</div>
                         </div>
-                        <div className="bg-bg-200 p-3 rounded-lg">
+                        <div className="bg-bg-200 p-3 rounded-lg md:p-2">
                             <div className="text-xs font-light mb-2">Supply</div>
-                            <div className="text-xl">{`${priceFormater(
+                            <div className="text-xl md:text-base sm:text-sm">{`${priceFormater(
                                 supply
                             )} ${symbol}`}</div>
                         </div>
@@ -170,32 +170,36 @@ const Details: React.FC = () => {
                     <CoinChart data={data} isPositive={isPositive} interval={chartInterval} />
                 </div>
 
-                <div className="px-3 w-[30%] flex flex-col justify-between md:w-full md:items-start md:my-10">
-                    <div className="mb-4">
-                        <div className='text-lg mb-2'>
-                            <span className='m-3 text-primary-200 font-semibold uppercase'>Low</span>
+                <div className="px-3 w-[30%] flex flex-col justify-between md:w-full md:items-start md:my-4 md:flex-row-reverse gap-4 sm:flex-wrap-reverse">
+                    <div className="mb-4 md:mb-0 sm:w-full">
+                        <div className='text-lg mb-2 md:text-base sm:text-sm'>
+                            <span className='mr-3 text-primary-200 font-semibold uppercase'>Low</span>
                             <span>${numberAug(low, 5)}</span>
                         </div>
-                        <div className='text-lg mb-2'>
-                            <span className='m-3 text-primary-200 font-semibold uppercase'>Hight</span>
+                        <div className='text-lg mb-2 md:text-base sm:text-sm'>
+                            <span className='mr-3 text-primary-200 font-semibold uppercase'>Hight</span>
                             <span>${numberAug(high, 5)}</span>
                         </div>
-                        <div className='text-lg mb-2'>
-                            <span className='m-3 text-primary-200 font-semibold uppercase'>Average</span>
+                        <div className='text-lg mb-2 md:text-base sm:text-sm'>
+                            <span className='mr-3 text-primary-200 font-semibold uppercase'>Average</span>
                             <span>${numberAug(average, 5)}</span>
                         </div>
                     </div>
-                    <div className="flex items-center justify-between flex-wrap gap-3">
-                        {renderChartIntervals()}
+
+                    <div className="sm:w-full">
+                        <div className="mb-3 text-primary-200 font-semibold uppercase md:text-base sm:text-sm">Data intervals</div>
+                        <div className="flex items-center justify-between flex-wrap gap-3 sm:w-full sm:gap-1">
+                            {renderChartIntervals()}
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <div className="mt-20">
+            <div className="mt-20 lg:mt-14 md:mt-6">
                 <MarketsTable markets={marketList} />
                 <button
                     onClick={loadExchangesClickHandler}
-                    className="mx-auto block px-6 capitalize py-4 my-5 text-center transition-colors rounded-full bg-bg-100 hover:bg-accent-200">
+                    className="mx-auto block px-6 capitalize py-4 my-5 text-center transition-colors rounded-full bg-bg-100 hover:bg-accent-200 sm:px-4 sm:py-3">
                     load more
                 </button>
             </div>

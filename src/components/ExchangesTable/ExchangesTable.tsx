@@ -16,9 +16,9 @@ const ExchangesTable: React.FC<IExchangesTable> = ({ exchanges }) => {
             <thead className='bg-bg-300 sticky top-0'>
                 <tr className=''>
                     <th className='text-start p-4 md:hidden'>Rank</th>
-                    <th className='text-start p-4'>Name</th>
-                    <th className='text-end p-4'>Tranding Pairs</th>
-                    <th className='text-end p-4'>Volume(24Hr)</th>
+                    <th className='text-start p-4 sm:text-sm sm:p-2'>Name</th>
+                    <th className='text-end p-4 sm:text-sm sm:p-2'>Tranding Pairs</th>
+                    <th className='text-end p-4 sm:text-sm sm:p-2'>Volume(24Hr)</th>
                     <th className='text-end p-4 md:hidden'>Total(%)</th>
                 </tr>
             </thead>

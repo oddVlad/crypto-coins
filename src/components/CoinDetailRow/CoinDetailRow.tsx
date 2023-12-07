@@ -32,14 +32,13 @@ const CoinDetailRow: React.FC<ICoinDetailRowProps> = ({ coin: { id, name, symbol
     return (
         <tr className='bg-bg-200'>
             <td colSpan={8}>
-                <div className="p-5 flex flex-col items-stretch justify-center">
+                <div className="p-5 flex flex-col items-stretch justify-center lg:p-4 sm:p-2">
                     <div className='flex mb-5 items-center flex-wrap justify-between'>
-                        <div className='flex items-center flex-wrap justify-center'>
+                        <div className='flex items-center justify-center mb-4'>
                             <img
-                                width="70"
                                 src={`https://assets.coincap.io/assets/icons/${symbol.toLowerCase()}@2x.png`}
                                 alt={name}
-                                className='mr-5'
+                                className='mr-5 w-16'
 
                             />
                             <div className=''>
@@ -49,27 +48,27 @@ const CoinDetailRow: React.FC<ICoinDetailRowProps> = ({ coin: { id, name, symbol
                             </div>
                         </div>
 
-                        <div className='flex items-center justify-between flex-wrap gap-4'>
-                            <div className='text-lg'>
+                        <div className='flex items-center justify-between gap-4 lg:flex-col lg:items-start lg:gap-3 sm:gap-2'>
+                            <div className='text-lg lg:text-base sm-text-sm'>
                                 <span className='m-3 text-primary-200 font-semibold uppercase'>High</span>
                                 <span>${numberAug(high, 5)}</span>
                             </div>
-                            <div className='text-lg'>
+                            <div className='text-lg lg:text-base sm-text-sm'>
                                 <span className='m-3 text-primary-200 font-semibold uppercase'>Low</span>
                                 <span>${numberAug(low, 5)}</span>
                             </div>
-                            <div className='text-lg'>
+                            <div className='text-lg lg:text-base sm-text-sm'>
                                 <span className='m-3 text-primary-200 font-semibold uppercase'>Average</span>
                                 <span>${numberAug(average, 5)}</span>
                             </div>
                         </div>
                     </div>
-                    <div className='px-20 mb-5'>
+                    <div className='my-5'>
                         <CoinChart data={historyList} interval={HISTORY_INTERVALS.DAY} isPositive={isPositive} />
                     </div>
                     <Link
                         to={`${ROUTES.DETAILS}/${id}`}
-                        className='px-6 py-4 mx-auto text-center transition-colors rounded-full bg-bg-100 hover:bg-accent-200'
+                        className='px-6 py-4 mx-auto text-center transition-colors rounded-full bg-bg-100 hover:bg-accent-200 sm:px-4 sm:py-3'
                     >
                         More Details
                     </Link>

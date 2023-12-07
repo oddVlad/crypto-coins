@@ -22,11 +22,11 @@ const ExchangesTableRow: React.FC<IExchangesTableRow> = ({
     return (
         <tr className='cursor-pointer dark:bg-bg-200 hover:dark:bg-bg-100 border-block-end' onClick={exchangeRowClickHandler}
         >
-            <td className='text-start p-4 md:p-2 md:hidden'>{rank}</td>
-            <td className='text-start p-4 md:p-2'>{name}</td>
-            <td className='text-end p-4 md:p-2'>{tradingPairs}</td>
-            <td className='text-end p-4 md:p-2'>${priceFormater(volumeUsd)}</td>
-            <td className='text-end p-4 md:p-2 md:hidden'>{numberAug(percentTotalVolume)}%</td>
+            <td className='text-start p-4 md:p-3 md:hidden'>{rank}</td>
+            <td className='text-start p-4 md:p-3 sm:text-sm sm:p-2'>{name}</td>
+            <td className='text-end p-4 md:p-3 sm:text-sm sm:p-2'>{tradingPairs}</td>
+            <td className='text-end p-4 md:p-3 sm:text-sm sm:p-2'>${priceFormater(volumeUsd)}</td>
+            <td className='text-end p-4 md:p-3 md:hidden'>{numberAug(percentTotalVolume)}%</td>
         </tr>
     )
 }

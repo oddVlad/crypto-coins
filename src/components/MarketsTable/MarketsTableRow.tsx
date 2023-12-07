@@ -21,13 +21,13 @@ const MarketsTableRow: React.FC<IMarketsTableRowProps> = ({ market }) => {
         <tr
             className='cursor-pointer dark:bg-bg-200 hover:dark:bg-bg-100 border-block-end'
         >
-            <td className='text-start p-4 md:p-2'>{exchangeId}</td>
-            <td className='flex text-start p-4 md:p-2 items-center '>
+            <td className='text-start p-4  sm:text-sm sm:p-2'>{exchangeId}</td>
+            <td className='flex text-start p-4 items-center  sm:text-sm sm:p-2'>
                 {baseSymbol}/{quoteSymbol}
             </td>
-            <td className='text-start p-4 md:p-2 md:hidden'>${numberAug(priceUsd)}</td>
-            <td className='text-start p-4 md:p-2'>${numberAug(volumeUsd24Hr, 0)}</td>
-            <td className='p-4 md:p-2 text-end md:hidden'>{numberAug(volumePercent)}%</td>
+            <td className='text-start p-4 md:hidden'>${numberAug(priceUsd)}</td>
+            <td className='text-start p-4 sm:text-sm sm:p-2'>${numberAug(volumeUsd24Hr, 0)}</td>
+            <td className='p-4 text-end md:hidden'>{numberAug(volumePercent)}%</td>
 
         </tr>
     )

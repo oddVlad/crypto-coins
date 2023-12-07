@@ -14,11 +14,8 @@ const Header: React.FC<HeaderProps> = () => {
                 <img src={CryptoIcon} alt="Crypto world" className="w-[40px]" />
                 <h1 className="text-xl font-bold">Crypto Coins</h1>
             </Link>
-
             <Navbar />
-
             <NavMenu />
-
         </div>
     );
 };

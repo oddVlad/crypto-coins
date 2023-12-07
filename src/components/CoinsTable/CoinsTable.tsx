@@ -33,13 +33,13 @@ const CoinsTable: React.FC<CoinsTableProps> = ({ coins }) => {
             <thead className='bg-bg-300 sticky top-0'>
                 <tr className=''>
                     <th className='text-start p-4 sm:hidden'>Rank</th>
-                    <th className='text-start p-4'>Name</th>
-                    <th className='text-start p-4'>Price</th>
+                    <th className='text-start p-4 sm:text-sm sm:p-2'>Name</th>
+                    <th className='text-start p-4 sm:text-sm sm:p-2'>Price</th>
                     <th className='text-start p-4 md:hidden'>Market Cap</th>
                     <th className='text-start p-4 lg:hidden'>Supply</th>
                     <th className='text-start p-4 lg:hidden'>VWAP(24)</th>
                     <th className='text-start p-4 md:hidden'>Volume(24)</th>
-                    <th className='text-end p-4'>Change(24)</th>
+                    <th className='text-end p-4 sm:text-sm sm:p-2'>Change(24)</th>
                 </tr>
             </thead>
             <tbody>

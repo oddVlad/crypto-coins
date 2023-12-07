@@ -45,7 +45,7 @@ const NavMenu: React.FC<INavMenuProps> = () => {
             <button onClick={handleButtonClick} className="h-full w-full">
                 {isMenuActive ? <IoClose size={30} /> : <CgMenu size={30} />}
             </button>
-            <nav ref={menuRef} className={`absolute bg-bg-100 rounded-lg flex flex-col items-stretch justify-center text-lg text-left w-64 top-full right-0  duration-300 ${isMenuActive ? "opacity-1 z-50 translate-y-0" : "opacity-0 -z-50 -translate-y-5"}`}>
+            <nav ref={menuRef} className={`absolute bg-bg-100 rounded-lg flex flex-col items-stretch justify-center text-lg text-left w-64 top-[130%] right-0  duration-300 ${isMenuActive ? "opacity-1 z-50 translate-y-0" : "opacity-0 -z-50 -translate-y-5"}`}>
                 <NavbarLink pathTo={ROUTES.HOME}>
                     <div className='flex items-center gap-3'>
                         <SiBitcoinsv size={20} />

@@ -49,29 +49,28 @@ const CoinTableRow: React.FC<ICoinTableRowProps> = ({ coin, selectedId, handleSe
                 <td className='text-start p-4 md:p-2 sm:hidden '>{rank}</td>
                 <td className='flex text-start p-4 md:p-2 items-center '>
                     <img
-                        width={40}
                         src={`https://assets.coincap.io/assets/icons/${symbol.toLowerCase()}@2x.png`}
                         alt={name}
-                        className='mr-3'
+                        className='mr-3 w-10 sm:w-8'
 
                     />
                     <div>
-                        <div className=''>
+                        <div className='sm:text-sm'>
                             {name}
                         </div>
-                        <div>
+                        <div className='sm:text-sm'>
                             {symbol}
                         </div>
                     </div>
 
                 </td>
-                <td className='text-start p-4 md:p-2 '>${numberAug(priceUsd)}</td>
+                <td className='text-start p-4 md:p-2 sm:text-sm'>${numberAug(priceUsd)}</td>
                 <td className='text-start p-4 md:p-2 md:hidden '>${priceFormater(marketCapUsd)}</td>
                 <td className='text-start p-4 md:p-2 lg:hidden '>{priceFormater(supply)}</td>
                 <td className='text-start p-4 md:p-2 lg:hidden '>${priceFormater(vwap24Hr)}</td>
                 <td className='text-start p-4 md:p-2 md:hidden '>${priceFormater(volumeUsd24Hr)}</td>
                 <td className={
-                    `text-end p-4 md:p-2 ${+changePercent24Hr <= 0
+                    `text-end p-4 md:p-2 sm:text-sm ${+changePercent24Hr <= 0
                         ? "text-chart-0"
                         : "text-chart-1"}`
                 }>

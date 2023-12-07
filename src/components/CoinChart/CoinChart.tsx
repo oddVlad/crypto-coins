@@ -33,6 +33,7 @@ const CoinChart: React.FC<ICoinChartProps> = ({ data, isPositive, interval = HIS
 
     const chartOptions: ChartOptions = {
         responsive: true,
+        maintainAspectRatio: true,
         ...GRAPH_COLOR_SHEMA[isPositive ? GRAPH_STATE.POSITIVE : GRAPH_STATE.NEGATIVE],
         interaction: {
             intersect: false,
@@ -51,7 +52,7 @@ const CoinChart: React.FC<ICoinChartProps> = ({ data, isPositive, interval = HIS
             },
             y: {
                 position: 'right',
-            }
+            },
         },
         plugins: {
             tooltip: {
@@ -63,7 +64,7 @@ const CoinChart: React.FC<ICoinChartProps> = ({ data, isPositive, interval = HIS
             legend: {
                 display: false,
             }
-        }
+        },
     };
 
     const chartResize = () => {

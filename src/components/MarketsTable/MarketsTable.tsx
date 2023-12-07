@@ -14,10 +14,10 @@ const MarketsTable: React.FC<IExchangesTableProps> = ({ markets }) => {
         <table className="table-auto w-full mx-auto relative border-collapse">
             <thead className='bg-bg-300 sticky top-0'>
                 <tr className=''>
-                    <th className='text-start p-4'>Exchange</th>
-                    <th className='text-start p-4'>Pair</th>
+                    <th className='text-start p-4 sm:text-sm sm:p-2'>Exchange</th>
+                    <th className='text-start p-4 sm:text-sm sm:p-2'>Pair</th>
                     <th className='text-start p-4 md:hidden'>Price</th>
-                    <th className='text-start p-4 '>Volume(24Hr)</th>
+                    <th className='text-start p-4 sm:text-sm sm:p-2'>Volume(24Hr)</th>
                     <th className='text-end p-4 md:hidden'>Volume(%)</th>
                 </tr>
             </thead>
