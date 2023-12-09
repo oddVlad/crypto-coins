@@ -1,10 +1,6 @@
-export interface ISpinElement {
+export interface ITechnologyInfo {
     image: string,
     title: string,
     describe: string,
-}
-
-export interface IPosition {
-    x: number,
-    y: number,
+    link?: string,
 }

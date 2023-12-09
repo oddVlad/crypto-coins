@@ -4,10 +4,11 @@ import { COIN_EXCHANGES_LIMIT, COIN_EXCHANGES_OFFSET } from '../../constans/valu
 import { useAppDispatch, useAppSelector } from '../../hooks/store';
 import { fetchExchagnes } from '../../api/exchanges';
 import { resetExchangesState } from '../../store/reducers/exchangesSlice';
+import ExchangesTabelPreloader from '../../components/Preloaders/ExchangesTabelPreloader';
 
 const Exchanges: React.FC = () => {
     const [offset, setOffset] = useState<number>(COIN_EXCHANGES_OFFSET);
-    const { list, isEndList } = useAppSelector(state => state.exchanges)
+    const { list, isEndList, isLoading } = useAppSelector(state => state.exchanges)
     const dispatch = useAppDispatch();
 
     useEffect(() => {
@@ -28,8 +29,9 @@ const Exchanges: React.FC = () => {
     }
 
     return (
-        <div>
+        <div className='container'>
             <ExchangesTable exchanges={list} />
+            {isLoading && <ExchangesTabelPreloader />}
             {isEndList || <button
                 onClick={loadButtonClickHandler}
                 className="mx-auto block px-6 capitalize py-4 my-5 text-center transition-colors rounded-full bg-bg-100 hover:bg-accent-200">

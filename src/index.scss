@@ -5,11 +5,14 @@
 
 @layer components{
   .container {
-    @apply max-w-[1280px] xl:max-w-[1024px] lg:max-w-[768px] md:max-w-full;
+    @apply max-w-[1280px] md:max-w-full;
   }
-
-  .pause {
-    animation-play-state: paused;
+  
+  .glass{
+    background: rgba( 255, 255, 255, 0 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 20px );
+    -webkit-backdrop-filter: blur( 20px );
   }
 }
 
@@ -27,6 +30,7 @@ html {
   --accent-100:#cee8ff;
   --text-100:#FFFFFF;
   --text-200:#e0e0e0;
+  --text-300:#037DDB;
   --bg-300:#0F1C2E;
   --bg-200:#1f2b3e;
   --bg-100:#374357;

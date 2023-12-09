@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { redirect, useParams } from "react-router-dom";
 import { BsBoxArrowUpRight } from "react-icons/bs";
 import { fetchCoinDetails, fetchCoinHistory } from "../../api/coins";
 import { useAppDispatch, useAppSelector } from "../../hooks/store";
@@ -12,12 +12,16 @@ import {
     HISTORY_INTERVALS,
     COIN_MARKETS_OFFSET,
     COIN_MARKETS_LIMIT,
+    ROUTES,
 } from "../../constans/values";
 import { fetchCoinMarkets } from "../../api/markets";
 import MarketsTable from "../../components/MarketsTable";
 import { resetDetailsState } from "../../store/reducers/detailsSlice";
 import { resetHistoryState } from "../../store/reducers/historySlice";
 import { resetMarketsState } from "../../store/reducers/marketsSlice";
+import DetailsHeaderPreloader from "../../components/Preloaders/DetailsHeaderPreloader";
+import DetailsHistoryPreloader from "../../components/Preloaders/DetailsHistoryPreloader";
+import ExchangesTabelPreloader from "../../components/Preloaders/ExchangesTabelPreloader";
 
 const Details: React.FC = () => {
     const { id: paramId } = useParams<string>();
@@ -30,9 +34,10 @@ const Details: React.FC = () => {
             marketCapUsd,
             volumeUsd24Hr,
             supply,
-            explorer,
+            explorer = "#",
         },
         isLoading: isDetailLoading,
+        error: detailsError,
     } = useAppSelector((state) => state.details);
     const {
         data,
@@ -40,9 +45,10 @@ const Details: React.FC = () => {
         low,
         high,
         average,
-        changes
+        changes,
+        isLoading: isHistoryLoading,
     } = useAppSelector((state) => state.history);
-    const { list: marketList } = useAppSelector(state => state.markets)
+    const { list: marketList, isLoading: isMarketsLoading } = useAppSelector(state => state.markets)
     const [chartInterval, setChatInterval] = useState<string>(HISTORY_INTERVALS.DAY);
     const [exchangesOffset, setExchangesOffset] = useState<number>(COIN_MARKETS_OFFSET);
 
@@ -68,7 +74,6 @@ const Details: React.FC = () => {
             dispatch(resetMarketsState());
         }
     }, []);
-
 
     useEffect(() => {
         const requestData: ICoinHistoryRequestData = {
@@ -115,8 +120,8 @@ const Details: React.FC = () => {
     )
 
     return (
-        <>
-            {isDetailLoading ? <div className="text-center">"Loading . . ."</div> :
+        <div className="container">
+            {isDetailLoading ? <DetailsHeaderPreloader /> :
                 <div className="flex justify-between flex-wrap gap-3 items-center mb-8">
                     <div className="flex gap-3 items-stretch sm:w-full">
                         <div className="text-center bg-bg-200 p-3 rounded-lg md:p-2">
@@ -129,9 +134,9 @@ const Details: React.FC = () => {
                                 <h2 className="text-2xl mr-4 md:text-xl">
                                     {name} ({symbol})
                                 </h2>
-                                {explorer && <a href={explorer} rel="nofollow" target="blank" title={`${name} website`}>
+                                <a href={explorer} rel="nofollow" target="blank" title={`${name} website`}>
                                     <BsBoxArrowUpRight size={20} className=" transition-transform hover:scale-110" />
-                                </a>}
+                                </a>
 
                             </div>
                             <div className="flex items-center gap-3">
@@ -165,8 +170,8 @@ const Details: React.FC = () => {
                 </div>
             }
 
-            <div className="flex items-stretch justify-between gap-3 md:flex-col md:items-center md:justify-center">
-                <div className="w-[70%] md:w-full">
+            {isHistoryLoading || isDetailLoading ? <DetailsHistoryPreloader /> : <div className="flex items-stretch justify-between gap-3 md:flex-col md:items-center md:justify-center">
+                <div className="w-3/4 md:w-full">
                     <CoinChart data={data} isPositive={isPositive} interval={chartInterval} />
                 </div>
 
@@ -187,23 +192,24 @@ const Details: React.FC = () => {
                     </div>
 
                     <div className="sm:w-full">
-                        <div className="mb-3 text-primary-200 font-semibold uppercase md:text-base sm:text-sm">Data intervals</div>
-                        <div className="flex items-center justify-between flex-wrap gap-3 sm:w-full sm:gap-1">
+                        <div className="mb-3 text-primary-200 font-semibold uppercase md:text-base sm:text-sm">Data period</div>
+                        <div className="flex items-center justify-between flex-wrap gap-1 sm:w-full">
                             {renderChartIntervals()}
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>}
 
             <div className="mt-20 lg:mt-14 md:mt-6">
                 <MarketsTable markets={marketList} />
+                {isMarketsLoading && <ExchangesTabelPreloader />}
                 <button
                     onClick={loadExchangesClickHandler}
                     className="mx-auto block px-6 capitalize py-4 my-5 text-center transition-colors rounded-full bg-bg-100 hover:bg-accent-200 sm:px-4 sm:py-3">
                     load more
                 </button>
             </div>
-        </>
+        </div>
     );
 };
 

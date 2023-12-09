@@ -39,11 +39,9 @@ const CoinDetailRow: React.FC<ICoinDetailRowProps> = ({ coin: { id, name, symbol
                                 src={`https://assets.coincap.io/assets/icons/${symbol.toLowerCase()}@2x.png`}
                                 alt={name}
                                 className='mr-5 w-16'
-
                             />
                             <div className=''>
                                 <p className='text-2xl mb-1'>{name} ({symbol})</p>
-
                                 <span className='block'>{getFormatedCurrentDate()}</span>
                             </div>
                         </div>
