@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.css": "./static/css/main.12839cc6.css",
-    "main.js": "./static/js/main.e6b5cbdb.js",
-    "static/media/ReduxTooltik.svg": "./static/media/ReduxTooltik.eb2b3e799e01651163b7fb30894dedcd.svg",
-    "static/media/crypto.png": "./static/media/crypto.34c15035319bddd24612.png",
-    "static/media/Typescript.svg": "./static/media/Typescript.ef74d96e342c1e0d6faca727dd65a1c5.svg",
-    "static/media/chartjs.svg": "./static/media/chartjs.609a2dc9742df4252749dc4bb2fb9350.svg",
-    "static/media/React.svg": "./static/media/React.bf7b90fddcea9a43842d85b36e5557e5.svg",
-    "static/media/tailwindcss.svg": "./static/media/tailwindcss.79614a5f61617ba49a0891494521226b.svg",
-    "index.html": "./index.html",
-    "main.12839cc6.css.map": "./static/css/main.12839cc6.css.map",
-    "main.e6b5cbdb.js.map": "./static/js/main.e6b5cbdb.js.map"
+    "main.css": "/crypto-coins/static/css/main.12839cc6.css",
+    "main.js": "/crypto-coins/static/js/main.cb19ee6e.js",
+    "static/media/ReduxTooltik.svg": "/crypto-coins/static/media/ReduxTooltik.eb2b3e799e01651163b7fb30894dedcd.svg",
+    "static/media/crypto.png": "/crypto-coins/static/media/crypto.34c15035319bddd24612.png",
+    "static/media/Typescript.svg": "/crypto-coins/static/media/Typescript.ef74d96e342c1e0d6faca727dd65a1c5.svg",
+    "static/media/chartjs.svg": "/crypto-coins/static/media/chartjs.609a2dc9742df4252749dc4bb2fb9350.svg",
+    "static/media/React.svg": "/crypto-coins/static/media/React.bf7b90fddcea9a43842d85b36e5557e5.svg",
+    "static/media/tailwindcss.svg": "/crypto-coins/static/media/tailwindcss.79614a5f61617ba49a0891494521226b.svg",
+    "index.html": "/crypto-coins/index.html",
+    "main.12839cc6.css.map": "/crypto-coins/static/css/main.12839cc6.css.map",
+    "main.cb19ee6e.js.map": "/crypto-coins/static/js/main.cb19ee6e.js.map"
   },
   "entrypoints": [
     "static/css/main.12839cc6.css",
-    "static/js/main.e6b5cbdb.js"
+    "static/js/main.cb19ee6e.js"
   ]
 }
