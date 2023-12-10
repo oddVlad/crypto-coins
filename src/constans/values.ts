@@ -71,3 +71,8 @@ export const CHART_LABELS_FORMATS = {
   [HISTORY_INTERVALS.YEAR]: DATE_FORMAT.CHART_LABELS_MONTH,
 }
 
+export enum THEME {
+  DARK = 'dark',
+  LIGHT = 'light'
+}
+

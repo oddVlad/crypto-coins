@@ -19,7 +19,7 @@ const MarketsTableRow: React.FC<IMarketsTableRowProps> = ({ market }) => {
 
     return (
         <tr
-            className='cursor-pointer dark:bg-bg-200 hover:dark:bg-bg-100 border-block-end'
+            className='bg-white dark:bg-bg-200 hover:dark:bg-bg-100 border-b border-primary-300 dark:border-bg-300'
         >
             <td className='text-start p-4  sm:text-sm sm:p-2'>{exchangeId}</td>
             <td className='flex text-start p-4 items-center  sm:text-sm sm:p-2'>

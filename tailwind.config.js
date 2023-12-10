@@ -1,15 +1,14 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
+  darkMode: "class",
   theme: {
-    darkMode: "class",
     screens: {
       xl: { max: "1440px" },
       lg: { max: "1024px" },
       md: { max: "768px" },
       sm: { max: "480px" },
     },
-
     container: {
       center: true,
     },

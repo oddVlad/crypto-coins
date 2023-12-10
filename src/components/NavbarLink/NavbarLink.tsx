@@ -15,8 +15,8 @@ const NavbarLink: React.FC<INavbarLinkProps> = ({ pathTo, children }) => {
                 isPending
                     ? ""
                     : isActive
-                        ? "text-primary-300 hover:bg-bg-100 p-4 block rounded-lg"
-                        : "transition hover:bg-bg-100 p-4 block rounded-lg"
+                        ? "bg-accent-100 dark:bg-transparent dark:text-accent-300 hover:dark:text-white hover:dark:bg-accent-200 p-4 block shadow-lg dark:shadow-transparent  rounded-lg"
+                        : "bg-white dark:bg-transparent hover:bg-accent-100 dark:text-white hover:dark:bg-accent-200 transition p-4 shadow-lg dark:shadow-transparent rounded-lg"
             }
         >
             {children}

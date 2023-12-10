@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { redirect, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { BsBoxArrowUpRight } from "react-icons/bs";
 import { fetchCoinDetails, fetchCoinHistory } from "../../api/coins";
 import { useAppDispatch, useAppSelector } from "../../hooks/store";
@@ -12,7 +12,6 @@ import {
     HISTORY_INTERVALS,
     COIN_MARKETS_OFFSET,
     COIN_MARKETS_LIMIT,
-    ROUTES,
 } from "../../constans/values";
 import { fetchCoinMarkets } from "../../api/markets";
 import MarketsTable from "../../components/MarketsTable";
@@ -22,6 +21,7 @@ import { resetMarketsState } from "../../store/reducers/marketsSlice";
 import DetailsHeaderPreloader from "../../components/Preloaders/DetailsHeaderPreloader";
 import DetailsHistoryPreloader from "../../components/Preloaders/DetailsHistoryPreloader";
 import ExchangesTabelPreloader from "../../components/Preloaders/ExchangesTabelPreloader";
+import Button from "../../components/Button";
 
 const Details: React.FC = () => {
     const { id: paramId } = useParams<string>();
@@ -37,7 +37,6 @@ const Details: React.FC = () => {
             explorer = "#",
         },
         isLoading: isDetailLoading,
-        error: detailsError,
     } = useAppSelector((state) => state.details);
     const {
         data,
@@ -91,7 +90,7 @@ const Details: React.FC = () => {
         setChatInterval(event.target.value);
     };
 
-    const loadExchangesClickHandler = (event: any) => {
+    const loadExchangesClickHandler = () => {
         const nextOffsetValue = exchangesOffset + COIN_MARKETS_LIMIT;
         dispatch(fetchCoinMarkets(paramId, nextOffsetValue));
         setExchangesOffset(nextOffsetValue);
@@ -111,7 +110,7 @@ const Details: React.FC = () => {
             />
             <label
                 htmlFor={`radio-${index}`}
-                className="block w-12 py-2 text-center transition-colors cursor-pointer  peer-hover:bg-bg-100 rounded-lg peer-checked:bg-accent-200 md:text-base sm:text-sm sm:w-10"
+                className="block w-12 py-2 text-center transition-all cursor-pointer shadow-md peer-hover:bg-accent-100 peer-checked:bg-accent-100 peer-active:scale-95 peer-hover:dark:bg-bg-100 rounded-lg peer-checked:dark:bg-accent-200 md:text-base sm:text-sm sm:w-10"
             >
                 {item}
             </label>
@@ -124,7 +123,7 @@ const Details: React.FC = () => {
             {isDetailLoading ? <DetailsHeaderPreloader /> :
                 <div className="flex justify-between flex-wrap gap-3 items-center mb-8">
                     <div className="flex gap-3 items-stretch sm:w-full">
-                        <div className="text-center bg-bg-200 p-3 rounded-lg md:p-2">
+                        <div className="text-center bg-white shadow-md dark:shadow-none dark:bg-bg-200 p-3 rounded-lg md:p-2">
                             <p className="text-3xl mb-2 md:text-2xl">{rank}</p>
                             <div className="uppercase font-light text-xs">rank</div>
                         </div>
@@ -152,15 +151,15 @@ const Details: React.FC = () => {
                     </div>
 
                     <div className="flex gap-3 items-stretch sm:justify-between sm:w-full">
-                        <div className="bg-bg-200 p-3 rounded-lg md:p-2">
+                        <div className="bg-white shadow-md dark:shadow-none dark:bg-bg-200 p-3 rounded-lg md:p-2">
                             <div className="text-xs font-light mb-2">Market Cap</div>
                             <div className="text-xl md:text-base sm:text-sm">${priceFormater(marketCapUsd)}</div>
                         </div>
-                        <div className="bg-bg-200 p-3 rounded-lg md:p-2">
+                        <div className="bg-white shadow-md dark:shadow-none dark:bg-bg-200 p-3 rounded-lg md:p-2">
                             <div className="text-xs font-light mb-2">Volume (24Hr)</div>
                             <div className="text-xl md:text-base sm:text-sm">${priceFormater(volumeUsd24Hr)}</div>
                         </div>
-                        <div className="bg-bg-200 p-3 rounded-lg md:p-2">
+                        <div className="bg-white shadow-md dark:shadow-none dark:bg-bg-200 p-3 rounded-lg md:p-2">
                             <div className="text-xs font-light mb-2">Supply</div>
                             <div className="text-xl md:text-base sm:text-sm">{`${priceFormater(
                                 supply
@@ -203,11 +202,12 @@ const Details: React.FC = () => {
             <div className="mt-20 lg:mt-14 md:mt-6">
                 <MarketsTable markets={marketList} />
                 {isMarketsLoading && <ExchangesTabelPreloader />}
-                <button
-                    onClick={loadExchangesClickHandler}
-                    className="mx-auto block px-6 capitalize py-4 my-5 text-center transition-colors rounded-full bg-bg-100 hover:bg-accent-200 sm:px-4 sm:py-3">
-                    load more
-                </button>
+                <div className="flex items-center justify-center my-4">
+                    <Button
+                        clickHandler={loadExchangesClickHandler}>
+                        load more
+                    </Button>
+                </div>
             </div>
         </div>
     );

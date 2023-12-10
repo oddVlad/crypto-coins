@@ -66,12 +66,12 @@ code {
 
 /* Track */
 ::-webkit-scrollbar-track { 
-  background: var(--bg-200); 
+  background: var(--accent-100); 
 } 
 
 /* Handle */
 ::-webkit-scrollbar-thumb { 
-  background: var(--bg-100);   
+  background: var(--primary-300);   
   border-radius: 0px; 
 } 
 
@@ -82,4 +82,19 @@ code {
 
 .border-block-end{
   border-block-end: 2px solid var(--bg-100);
+}
+/* Track dark theme */
+html.dark ::-webkit-scrollbar-track { 
+  background: var(--bg-200); 
+} 
+
+/* Handle dark theme */
+html.dark ::-webkit-scrollbar-thumb { 
+  background: var(--bg-100);   
+  border-radius: 0px; 
+} 
+
+/* Handle on hover dark theme */
+html.dark ::-webkit-scrollbar-thumb:hover { 
+  background: var(--primary-200); 
 }

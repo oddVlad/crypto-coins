@@ -13,7 +13,7 @@ const ExchangesTable: React.FC<IExchangesTable> = ({ exchanges }) => {
 
     return (
         <table className="table-auto w-full mx-auto relative border-collapse">
-            <thead className='bg-bg-300 sticky top-0'>
+            <thead className='bg-accent-100 dark:bg-bg-300 sticky top-0'>
                 <tr className=''>
                     <th className='text-start p-4 md:hidden'>Rank</th>
                     <th className='text-start p-4 sm:text-sm sm:p-2'>Name</th>

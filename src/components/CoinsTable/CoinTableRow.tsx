@@ -43,7 +43,7 @@ const CoinTableRow: React.FC<ICoinTableRowProps> = ({ coin, selectedId, handleSe
     return (
         <>
             <tr
-                className='cursor-pointer dark:bg-bg-200 hover:dark:bg-bg-100 border-block-end'
+                className='cursor-pointer transition-all bg-white hover:bg-slate-100 dark:bg-bg-200 hover:dark:bg-bg-100 border-b border-primary-300 dark:border-bg-300'
                 onClick={handleCoinClick}
             >
                 <td className='text-start p-4 md:p-2 sm:hidden '>{rank}</td>

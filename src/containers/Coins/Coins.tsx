@@ -5,6 +5,7 @@ import CoinsTable from "../../components/CoinsTable";
 import { resetCoinsState } from "../../store/reducers/coinSlice";
 import { GET_COIN_LIMIT, GET_COIN_OFFSET } from "../../constans/values";
 import CoinsTablePreloader from "../../components/Preloaders/CoinsTablePreloader";
+import Button from "../../components/Button";
 
 interface ICoinsProps { }
 
@@ -32,11 +33,11 @@ const Coins: React.FC<ICoinsProps> = () => {
         <div className="container">
             <CoinsTable coins={list} />
             {isLoading && <CoinsTablePreloader />}
-            <button
-                onClick={loadMoreCoinsClickHandler}
-                className="mx-auto block px-6 capitalize py-4 my-5 text-center transition-colors rounded-full bg-bg-100 hover:bg-accent-200">
-                load more
-            </button>
+            <div className="flex items-center justify-center my-4">
+                <Button clickHandler={loadMoreCoinsClickHandler}>
+                    load more
+                </Button>
+            </div>
         </div>
     );
 };

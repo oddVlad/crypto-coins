@@ -30,7 +30,7 @@ const CoinDetailRow: React.FC<ICoinDetailRowProps> = ({ coin: { id, name, symbol
     }, []);
 
     return (
-        <tr className='bg-bg-200'>
+        <tr className='bg-white dark:bg-bg-200'>
             <td colSpan={8}>
                 <div className="p-5 flex flex-col items-stretch justify-center lg:p-4 sm:p-2">
                     <div className='flex mb-5 items-center flex-wrap justify-between'>
@@ -66,7 +66,8 @@ const CoinDetailRow: React.FC<ICoinDetailRowProps> = ({ coin: { id, name, symbol
                     </div>
                     <Link
                         to={`${ROUTES.DETAILS}/${id}`}
-                        className='px-6 py-4 mx-auto text-center transition-colors rounded-full bg-bg-100 hover:bg-accent-200 sm:px-4 sm:py-3'
+                        className='px-6 py-4 mx-auto text-center rounded-full transition-all dark:shadow-none shadow-lg shadow-primary-300 hover:shadow-accent-300
+                        active:scale-95 active:shadow-primary-300 dark:bg-bg-100 hover:dark:bg-accent-200 sm:px-4 sm:py-3'
                     >
                         More Details
                     </Link>

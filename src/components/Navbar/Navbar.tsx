@@ -1,12 +1,10 @@
 import React from 'react'
 import { ROUTES } from '../../constans/values';
-import NavbarLink from './NavbarLink';
+import NavbarLink from '../NavbarLink';
 
-interface INavbarProps { }
-
-const Navbar: React.FC<INavbarProps> = () => {
+const Navbar: React.FC = () => {
     return (
-        <nav className="flex items-end justify-center text-lg text-center md:hidden">
+        <nav className="flex items-end justify-center text-lg gap-3 text-center md:hidden">
             <NavbarLink pathTo={ROUTES.HOME}>
                 Home
             </NavbarLink>
