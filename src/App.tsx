@@ -1,5 +1,5 @@
 import React from 'react';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import AppContainer from './containers/AppContainer';
 import Coins from './containers/Coins';
 import About from './containers/About';
@@ -8,41 +8,21 @@ import Details from './containers/Details';
 import { ROUTES } from './constans/values';
 import Exchanges from './containers/Exchanges';
 
-interface IAppProps {
 
-}
-
-const App: React.FC<IAppProps> = () => {
-  const router = createBrowserRouter([{
-    path: ROUTES.HOME,
-    element: <AppContainer />,
-    children: [
-      {
-        index: true,
-        element: <Coins />
-      },
-      {
-        path: ROUTES.DETAILS_ID,
-        element: <Details />
-      },
-      {
-        path: ROUTES.ABOUT,
-        element: <About />
-      },
-      {
-        path: ROUTES.EXCHANGES,
-        element: <Exchanges />,
-      },
-      {
-        path: ROUTES.ERROR_PAGE,
-        element: <NotFoundPage />,
-      },
-    ]
-  }])
-
+const App: React.FC = () => {
   return (
-    <RouterProvider router={router} />
-  )
+    <Router>
+      <Routes>
+        <Route path={ROUTES.HOME} element={<AppContainer />}>
+          <Route index element={<Coins />} />
+          <Route path={ROUTES.DETAILS_ID} element={<Details />} />
+          <Route path={ROUTES.ABOUT} element={<About />} />
+          <Route path={ROUTES.EXCHANGES} element={<Exchanges />} />
+          <Route path={ROUTES.ERROR_PAGE} element={<NotFoundPage />} />
+        </Route>
+      </Routes>
+    </Router>
+  );
 };
 
 export default App;
