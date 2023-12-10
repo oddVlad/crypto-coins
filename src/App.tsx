@@ -11,7 +11,7 @@ import Exchanges from './containers/Exchanges';
 
 const App: React.FC = () => {
   return (
-    <Router>
+    <Router basename={process.env.PUBLIC_URL}>
       <Routes>
         <Route path={ROUTES.HOME} element={<AppContainer />}>
           <Route index element={<Coins />} />
