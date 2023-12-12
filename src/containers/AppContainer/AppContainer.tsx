@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { Suspense, useEffect, useState } from 'react';
 import { Outlet } from 'react-router-dom';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import { THEME } from '../../constans/values';
+import LoadingSpiner from '../../components/LoadingSpiner';
 
 type IAppContainerProps = {};
 
@@ -30,7 +31,9 @@ const AppContainer: React.FC<IAppContainerProps> = () => {
             <Header themeToggle={handleThemeSwitch} theme={theme} />
 
             <div className="mx-auto my-8 w-full">
-                <Outlet />
+                <Suspense fallback={<LoadingSpiner />}>
+                    <Outlet />
+                </Suspense>
             </div>
             <Footer />
         </div>

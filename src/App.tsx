@@ -1,13 +1,13 @@
-import React from 'react';
+import React, { lazy } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import AppContainer from './containers/AppContainer';
-import Coins from './containers/Coins';
-import About from './containers/About';
-import NotFoundPage from './containers/NotFoundPage';
-import Details from './containers/Details';
 import { ROUTES } from './constans/values';
-import Exchanges from './containers/Exchanges';
 
+const AppContainer = lazy(() => import('./containers/AppContainer'));
+const Coins = lazy(() => import('./containers/Coins'));
+const About = lazy(() => import('./containers/About'));
+const NotFoundPage = lazy(() => import('./containers/NotFoundPage'));
+const Details = lazy(() => import('./containers/Details'));
+const Exchanges = lazy(() => import('./containers/Exchanges'));
 
 const App: React.FC = () => {
   return (
