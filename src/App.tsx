@@ -1,5 +1,5 @@
 import React, { lazy } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import { ROUTES } from './constans/values';
 
 const AppContainer = lazy(() => import('./containers/AppContainer'));
