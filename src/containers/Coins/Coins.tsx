@@ -7,9 +7,7 @@ import { GET_COIN_LIMIT, GET_COIN_OFFSET } from "../../constans/values";
 import CoinsTablePreloader from "../../components/Preloaders/CoinsTablePreloader";
 import Button from "../../components/Button";
 
-interface ICoinsProps { }
-
-const Coins: React.FC<ICoinsProps> = () => {
+const Coins: React.FC = () => {
     const [offset, setOffset] = useState<number>(GET_COIN_OFFSET);
     const dispatch = useAppDispatch();
 
@@ -27,7 +25,7 @@ const Coins: React.FC<ICoinsProps> = () => {
         const nextOffsetValue = offset + GET_COIN_LIMIT;
         dispatch(fetchCoinsList(nextOffsetValue));
         setOffset(nextOffsetValue);
-    }
+    };
 
     return (
         <div className="container">

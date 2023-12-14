@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import appIcon from "../../assets/crypto.png";
 import tailwindcssPicture from "../../assets/tailwindcss.svg";
 import chartjsPicture from "../../assets/chartjs.svg";
@@ -42,9 +42,7 @@ const elements: ITechnologyInfo[] = [
 ]
 
 const About: React.FC = () => {
-    const renderTechStackList = (list: ITechnologyInfo[]): JSX.Element[] => list.map((item) => <TechnologyInfo key={item.title} element={item} />
-
-    );
+    const renderTechStackList = (list: ITechnologyInfo[]): JSX.Element[] => list.map((item) => <TechnologyInfo key={item.title} element={item} />);
 
     return (
         <div className='container'>

@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import { ICoin } from '../../types/coins'
+import React, { useState } from 'react';
+import { ICoin } from '../../types/coins';
 import CoinTableRow from './CoinTableRow';
 
 interface CoinsTableProps {
@@ -16,7 +16,7 @@ const CoinsTable: React.FC<CoinsTableProps> = ({ coins }) => {
         else {
             setSelectedId(coinId);
         }
-    }
+    };
 
     const renderTableRow = (coinsList: ICoin[]) => {
         return coinsList.map(coin => <CoinTableRow
@@ -26,12 +26,12 @@ const CoinsTable: React.FC<CoinsTableProps> = ({ coins }) => {
             selectedId={selectedCoinId}
         />
         )
-    }
+    };
 
     return (
         <table className="table-auto w-full mx-auto relative border-collapse shadow-lg">
             <thead className='bg-accent-100  dark:bg-bg-300 sticky top-0'>
-                <tr className=''>
+                <tr>
                     <th className='text-start p-4 sm:hidden'>Rank</th>
                     <th className='text-start p-4 sm:text-sm sm:p-2'>Name</th>
                     <th className='text-start p-4 sm:text-sm sm:p-2'>Price</th>

@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 interface IButtonProps {
     children: JSX.Element | string | JSX.Element[],
@@ -13,6 +13,6 @@ const Button: React.FC<IButtonProps> = ({ children, clickHandler }) => {
             {children}
         </button>
     )
-}
+};
 
-export default Button
+export default Button;

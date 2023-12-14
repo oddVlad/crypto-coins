@@ -4,10 +4,9 @@ import { numberAug } from '../../utils/stringParser';
 
 interface IMarketsTableRowProps {
     market: ICoinMarkets,
-}
+};
 
 const MarketsTableRow: React.FC<IMarketsTableRowProps> = ({ market }) => {
-
     const {
         exchangeId,
         baseSymbol,
@@ -31,6 +30,6 @@ const MarketsTableRow: React.FC<IMarketsTableRowProps> = ({ market }) => {
 
         </tr>
     )
-}
+};
 
-export default MarketsTableRow
+export default MarketsTableRow;

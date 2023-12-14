@@ -9,7 +9,7 @@ interface IExchangesTable {
 const ExchangesTable: React.FC<IExchangesTable> = ({ exchanges }) => {
     const renderExchangeRows = (list: IExchange[]) => list.map(item =>
         <ExchangesTableRow key={item.exchangeId} exchange={item} />
-    )
+    );
 
     return (
         <table className="table-auto w-full mx-auto relative border-collapse">
@@ -27,6 +27,6 @@ const ExchangesTable: React.FC<IExchangesTable> = ({ exchanges }) => {
             </tbody>
         </table>
     )
-}
+};
 
-export default ExchangesTable
+export default ExchangesTable;

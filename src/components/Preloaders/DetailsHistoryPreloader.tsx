@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 const DetailsHistoryPreloader: React.FC = () => {
     return (
@@ -24,4 +24,4 @@ const DetailsHistoryPreloader: React.FC = () => {
     )
 }
 
-export default DetailsHistoryPreloader
+export default DetailsHistoryPreloader;

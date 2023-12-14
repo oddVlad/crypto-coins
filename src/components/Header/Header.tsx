@@ -11,7 +11,7 @@ import { IoIosSunny } from "react-icons/io";
 interface IHeaderProps {
     themeToggle: () => void;
     theme: THEME
-}
+};
 
 const Header: React.FC<IHeaderProps> = ({ themeToggle, theme }) => {
 

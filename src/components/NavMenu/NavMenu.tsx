@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react';
 import NavbarLink from '../NavbarLink';
 import { ROUTES } from '../../constans/values';
 import { CgMenu } from 'react-icons/cg';
@@ -15,16 +15,16 @@ const NavMenu: React.FC = () => {
         if (menuRef.current && !isMenuActive && !menuRef.current.contains(e.target as Node)) {
             handleCloseMenu();
         }
-    }
+    };
 
     const handleCloseMenu = () => {
         setMenuActive(false);
-    }
+    };
 
     const handleButtonClick = (e: React.MouseEvent<HTMLButtonElement>) => {
         e.stopPropagation();
         setMenuActive(!isMenuActive);
-    }
+    };
 
     useEffect(() => {
         document.addEventListener("click", clickOutsideHandler);
@@ -34,7 +34,7 @@ const NavMenu: React.FC = () => {
             document.removeEventListener("click", clickOutsideHandler);
             document.removeEventListener("click", handleCloseMenu);
         }
-    }, [])
+    }, []);
 
     return (
         <div className="hidden md:block relative">
@@ -65,4 +65,4 @@ const NavMenu: React.FC = () => {
     )
 }
 
-export default NavMenu
+export default NavMenu;

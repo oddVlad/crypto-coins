@@ -1,10 +1,10 @@
-import React from 'react'
-import { ITechnologyInfo } from '../../types/common'
-import { BsBoxArrowUpRight } from 'react-icons/bs'
+import React from 'react';
+import { ITechnologyInfo } from '../../types/common';
+import { BsBoxArrowUpRight } from 'react-icons/bs';
 
 interface ITechnologyInfoProps {
     element: ITechnologyInfo,
-}
+};
 
 const TechnologyInfo: React.FC<ITechnologyInfoProps> = ({ element: { image, title, describe, link = "#" } }) => {
     return (
@@ -25,6 +25,6 @@ const TechnologyInfo: React.FC<ITechnologyInfoProps> = ({ element: { image, titl
             </div>
         </div >
     )
-}
+};
 
-export default TechnologyInfo
+export default TechnologyInfo;

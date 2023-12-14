@@ -1,1 +1,1 @@
-export {default} from './Coins';
+export { default } from './Coins';

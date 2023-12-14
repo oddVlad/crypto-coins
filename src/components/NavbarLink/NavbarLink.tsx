@@ -1,11 +1,11 @@
-import React from 'react'
-import { NavLink } from 'react-router-dom'
-import { ROUTES } from '../../constans/values'
+import React from 'react';
+import { NavLink } from 'react-router-dom';
+import { ROUTES } from '../../constans/values';
 
 interface INavbarLinkProps {
     pathTo: ROUTES,
     children: string | JSX.Element
-}
+};
 
 const NavbarLink: React.FC<INavbarLinkProps> = ({ pathTo, children }) => {
     return (
@@ -22,6 +22,6 @@ const NavbarLink: React.FC<INavbarLinkProps> = ({ pathTo, children }) => {
             {children}
         </NavLink>
     )
-}
+};
 
-export default NavbarLink
+export default NavbarLink;

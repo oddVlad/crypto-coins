@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import { ROUTES } from '../../constans/values';
 import NavbarLink from '../NavbarLink';
 
@@ -16,6 +16,6 @@ const Navbar: React.FC = () => {
             </NavbarLink>
         </nav>
     )
-}
+};
 
-export default Navbar
+export default Navbar;

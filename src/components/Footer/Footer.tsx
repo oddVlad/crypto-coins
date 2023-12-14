@@ -1,11 +1,9 @@
-import React from 'react'
+import React from 'react';
 import CryptoIcon from "../../assets/crypto.png";
 import { TbBrandGithubFilled } from "react-icons/tb";
 import { Link } from 'react-router-dom';
 
-interface FooterProps { }
-
-const Footer: React.FC<FooterProps> = () => {
+const Footer: React.FC = () => {
     return (
         <footer className="container flex items-center justify-between flex-wrap py-3 gap-3 ">
             <Link to="/" className="flex flex-1 items-center gap-3 p-2">
@@ -19,6 +17,6 @@ const Footer: React.FC<FooterProps> = () => {
             </a>
         </footer>
     )
-}
+};
 
 export default Footer;

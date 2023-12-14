@@ -1,5 +1,5 @@
-import React from 'react'
-import { GET_COIN_LIMIT } from '../../constans/values'
+import React from 'react';
+import { GET_COIN_LIMIT } from '../../constans/values';
 
 const CoinsTablePreloader: React.FC = () => {
     return (
@@ -9,6 +9,6 @@ const CoinsTablePreloader: React.FC = () => {
             )}
         </div>
     )
-}
+};
 
-export default CoinsTablePreloader
+export default CoinsTablePreloader;

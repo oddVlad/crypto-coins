@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react'
-import ExchangesTable from '../../components/ExchangesTable/ExchangesTable'
+import React, { useEffect, useState } from 'react';
+import ExchangesTable from '../../components/ExchangesTable/ExchangesTable';
 import { COIN_EXCHANGES_LIMIT, COIN_EXCHANGES_OFFSET } from '../../constans/values';
 import { useAppDispatch, useAppSelector } from '../../hooks/store';
 import { fetchExchagnes } from '../../api/exchanges';
@@ -9,7 +9,7 @@ import Button from '../../components/Button';
 
 const Exchanges: React.FC = () => {
     const [offset, setOffset] = useState<number>(COIN_EXCHANGES_OFFSET);
-    const { list, isEndList, isLoading } = useAppSelector(state => state.exchanges)
+    const { list, isEndList, isLoading } = useAppSelector(state => state.exchanges);
     const dispatch = useAppDispatch();
 
     useEffect(() => {
@@ -27,7 +27,7 @@ const Exchanges: React.FC = () => {
         const newOffset = offset + COIN_EXCHANGES_LIMIT;
         dispatch(fetchExchagnes({ offset: newOffset }));
         setOffset(newOffset);
-    }
+    };
 
     return (
         <div className='container'>
@@ -45,6 +45,6 @@ const Exchanges: React.FC = () => {
 
         </div>
     )
-}
+};
 
-export default Exchanges
+export default Exchanges;

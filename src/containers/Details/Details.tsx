@@ -47,7 +47,7 @@ const Details: React.FC = () => {
         changes,
         isLoading: isHistoryLoading,
     } = useAppSelector((state) => state.history);
-    const { list: marketList, isLoading: isMarketsLoading } = useAppSelector(state => state.markets)
+    const { list: marketList, isLoading: isMarketsLoading } = useAppSelector(state => state.markets);
     const [chartInterval, setChatInterval] = useState<string>(HISTORY_INTERVALS.DAY);
     const [exchangesOffset, setExchangesOffset] = useState<number>(COIN_MARKETS_OFFSET);
 
@@ -84,7 +84,7 @@ const Details: React.FC = () => {
             },
         };
         dispatch(fetchCoinHistory(requestData))
-    }, [chartInterval])
+    }, [chartInterval]);
 
     const changeInterval = (event: any) => {
         setChatInterval(event.target.value);
@@ -116,7 +116,7 @@ const Details: React.FC = () => {
             </label>
 
         </div>
-    )
+    );
 
     return (
         <div className="container">

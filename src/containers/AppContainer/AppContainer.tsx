@@ -5,9 +5,7 @@ import Footer from '../../components/Footer';
 import { THEME } from '../../constans/values';
 import LoadingSpiner from '../../components/LoadingSpiner';
 
-type IAppContainerProps = {};
-
-const AppContainer: React.FC<IAppContainerProps> = () => {
+const AppContainer: React.FC = () => {
     const [theme, setTheme] = useState<THEME>(
         localStorage.theme === THEME.DARK || window.matchMedia('(prefers-color-scheme: dark)').matches ? THEME.DARK : THEME.LIGHT
     );
@@ -24,7 +22,7 @@ const AppContainer: React.FC<IAppContainerProps> = () => {
         const newTheme = theme === THEME.LIGHT ? THEME.DARK : THEME.LIGHT;
         localStorage.theme = newTheme;
         setTheme(newTheme);
-    }
+    };
 
     return (
         <div className="w-full min-h-screen bg-white text-slate-950 dark:bg-bg-300 dark:text-text-100 p-4 lg:p-3 sm:p-2 overflow-hidden flex flex-col items-stretch justify-between">

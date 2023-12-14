@@ -14,7 +14,6 @@ interface ICoinDetailRowProps {
 
 const CoinDetailRow: React.FC<ICoinDetailRowProps> = ({ coin: { id, name, symbol } }) => {
     const {
-        isLoading,
         data: historyList,
         low,
         high,

@@ -1,5 +1,5 @@
-import axios from "axios"
-import { AppDispatch } from "../store"
+import axios from "axios";
+import { AppDispatch } from "../store";
 import {
     getCoinExchangesFailure,
     getCoinMarketsPending,
@@ -16,4 +16,4 @@ export const fetchCoinMarkets = (coinId: string = "", offset: number) => async (
     } catch (error: any) {
         dispatch(getCoinExchangesFailure(error));
     }
-}
+};
