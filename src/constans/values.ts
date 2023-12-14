@@ -12,6 +12,13 @@ export const MAX_TICKS_LIMIT = 24;
 
 export const ANIMATE_DURATION = 300;
 
+export const WEEK_DAYS = 7;
+export const DAY_HOURS = 24;
+export const HOUR_MINUTES = 60;
+export const MINUTE_SECONDS = 60;
+export const SECOND_MILLISECONDS = 1000;
+export const DAY_MILLISECONDS = DAY_HOURS * HOUR_MINUTES * MINUTE_SECONDS * SECOND_MILLISECONDS;
+
 export enum ROUTES {
   HOME = "/",
   ABOUT = "/about",
