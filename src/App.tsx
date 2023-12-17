@@ -3,11 +3,11 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { ROUTES } from './constans/values';
 
 const AppContainer = lazy(() => import('./containers/AppContainer'));
-const Coins = lazy(() => import('./containers/Coins'));
-const About = lazy(() => import('./containers/About'));
-const NotFoundPage = lazy(() => import('./containers/NotFoundPage'));
-const Details = lazy(() => import('./containers/Details'));
-const Exchanges = lazy(() => import('./containers/Exchanges'));
+const Coins = lazy(() => import('./pages/Coins'));
+const About = lazy(() => import('./pages/About'));
+const NotFoundPage = lazy(() => import('./pages/NotFoundPage'));
+const Details = lazy(() => import('./pages/Details'));
+const Exchanges = lazy(() => import('./pages/Exchanges'));
 
 const App: React.FC = () => {
   return (

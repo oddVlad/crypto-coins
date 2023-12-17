@@ -4,11 +4,14 @@ import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import { THEME } from '../../constans/values';
 import LoadingSpiner from '../../components/LoadingSpiner';
+import Button from '../../components/Button';
+import { IoIosArrowUp } from "react-icons/io";
 
 const AppContainer: React.FC = () => {
     const [theme, setTheme] = useState<THEME>(
         localStorage.theme === THEME.DARK || window.matchMedia('(prefers-color-scheme: dark)').matches ? THEME.DARK : THEME.LIGHT
     );
+    const [isUpButtonVisible, setUpButtonVisible] = useState<boolean>(false);
 
     useEffect(() => {
         if (theme === THEME.DARK) {
@@ -18,10 +21,33 @@ const AppContainer: React.FC = () => {
         }
     }, [theme]);
 
+    useEffect(() => {
+        window.addEventListener('scroll', checkScrollPosition);
+
+        return () => {
+            window.removeEventListener('scroll', checkScrollPosition);
+        }
+    }, []);
+
+    const checkScrollPosition = () => {
+        const scrollY = window.scrollY || document.documentElement.scrollTop;
+
+        if (scrollY > 600) {
+            setUpButtonVisible(true);
+        }
+        else {
+            setUpButtonVisible(false);
+        }
+    }
+
     const handleThemeSwitch = (): void => {
         const newTheme = theme === THEME.LIGHT ? THEME.DARK : THEME.LIGHT;
         localStorage.theme = newTheme;
         setTheme(newTheme);
+    };
+
+    const moveButtonClickHandler = () => {
+        window.scrollTo(0, 0);
     };
 
     return (
@@ -34,6 +60,11 @@ const AppContainer: React.FC = () => {
                 </Suspense>
             </div>
             <Footer />
+            <div className={`fixed bottom-5 right-5  duration-200 z ${isUpButtonVisible ? 'opacity-1' : 'opacity-0'}`}>
+                <Button clickHandler={moveButtonClickHandler}>
+                    <IoIosArrowUp size={40} />
+                </Button>
+            </div>
         </div>
     )
 };
